@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SPETAKKEL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      margin-top: 30px;
+    }
+    
+    .prompt {
+      margin: 20px auto;
+      max-width: 500px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .player-input {
+      margin-top: 20px;
+    }
+    
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>SPETAKKEL</h1>
+  
+  <div class="prompt">
+    <p id="prompt-text"></p>
+  </div>
+  
+  <div class="player-input">
+    <label for="player-names">Spillernavn (kommaseparert):</label>
+    <br>
+    <input type="text" id="player-names">
+  </div>
+  
+  <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
+  
+  <script>
+    const prompts = [
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Kategori, du bestemmer",
+      "Kategori, du bestemmer",
+      "Kategori, du bestemmer",
+      "Ta 5 slurker",
+      "Ta 5 slurker",
+      "Ta 5 slurker",
+      "Gi ut 10 slurker",
+      "Gi ut 10 slurker",
+      "Gi ut 10 slurker",
+      "VULKANEN, alle heller litt drikke i en kopp, den som trekker lik lapp som denne drikke den",
+      "VULKANEN, alle heller litt drikke i en kopp, den som trekker lik lapp som denne drikke den",
+      "Til neste gang du får lapp får du 2x slurker når du blir tildelt slurker",
+      "Til neste gang du får lapp kan du gi videre slurker du får, kan bare bli brukt én gang",
+      "La noen blande sammen 2 drikker til deg, gjetter du riktig, del ut 12 slurker",
+      "La en annen person starte en stoppeklokke for deg, si ifra når du tror det er gått 3 min. For hver 10sek du bommer, må du ta én slurk",
+      "List-off. Velg en kategori og ha en byderunde på kor mange ting du kan nevne. Den som byr høyest må klare å nevne så mange ting innenfor den kategorien, ellers må de drikke tilsvarende slurker. Klarer de det kan dele ut tilsvarende slurker",
+      "Du bestemmer to folk som skal ta rygg til rygg",
+      "Trekk ett kort fra en kortstokk, gjett om kortet er rødt eller svart. Har du riktig kan du dele ut tilsvarende slurker 2-14, bommer du; må du drikke tilsvarende",
+      "Drikk så mange slurker som personer i rommet som du tror har høyere bodycount enn deg",
+      "Tommel opp/ned, ville du heller bare kunne komme etter 1 minutt / 1 time?",
+      "Gjerrigknarken",
+      "Alle som har sett deg spy, drikk 3 slurker",
+      "Fortell hva sangen som spiller nå heter, klarer du det, del ut 5 slurker, klarer du det ikke drikk 5"
+      // Legg til flere ledetekster ved behov
+    ];
+    
+    function pickRandom() {
+      const promptText = document.getElementById("prompt-text");
+      const playerNamesInput = document.getElementById("player-names");
+      
+      const playerNames = playerNamesInput.value.trim();
+      
+      if (playerNames === "") {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+      
+      const players = playerNames.split(",").map(player => player.trim()).filter(Boolean);
+      
+      if (players.length === 0) {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+      
+      if (prompts.length === 0) {
+        promptText.textContent = "Ingen flere ledetekster igjen.";
+        return;
+      }
+      
+      const randomPromptIndex = Math.floor(Math.random() * prompts.length);
+      const randomPlayerIndex = Math.floor(Math.random() * players.length);
+      
+      const selectedPrompt = prompts[randomPromptIndex];
+      const selectedPlayer = players[randomPlayerIndex];
+      
+      prompts.splice(randomPromptIndex, 1); // Fjern den valgte ledeteksten fra listen
+      
+      promptText.textContent = selectedPrompt + " - Spiller: " + selectedPlayer;
+    }
+  </script>
+</body>
+</html>
