@@ -1,8 +1,5 @@
-
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPETAKKEL</title>
   <style>
     body {
@@ -16,7 +13,7 @@
     
     .prompt {
       margin: 20px auto;
-      max-width: 90vw;
+      max-width: 500px;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
@@ -54,7 +51,83 @@
   <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
   
   <script>
-    // Legg til JavaScript-koden som den opprinnelige versjonen
+    const prompts = [
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Velg selv, men vær kreativ da",
+      "Kategori, du bestemmer",
+      "Kategori, du bestemmer",
+      "Kategori, du bestemmer",
+      "Ta 5 slurker",
+      "Ta 5 slurker",
+      "Ta 5 slurker",
+      "Gi ut 10 slurker",
+      "Gi ut 10 slurker",
+      "Gi ut 10 slurker",
+      "VULKANEN, alle heller litt drikke i en kopp, den som får VULKANEN igjen må drikke den",
+      "VULKANEN, alle heller litt drikke i en kopp, den som får VULKANEN igjen må drikke den",
+      "Til neste gang du får lapp får du 2x slurker når du blir tildelt slurker",
+      "Til neste gang du får lapp kan du gi videre slurker du får, kan bare bli brukt én gang",
+      "La noen blande sammen 2 drikker til deg, gjetter du riktig, del ut 12 slurker",
+      "La en annen person starte en stoppeklokke for deg, si ifra når du tror det er gått 3 min. For hver 10sek du bommer, må du ta én slurk",
+      "List-off. Velg en kategori og ha en byderunde på kor mange ting du kan nevne. Den som byr høyest må klare å nevne så mange ting innenfor den kategorien, ellers må de drikke tilsvarende slurker. Klarer de det kan dele ut tilsvarende slurker",
+      "Du bestemmer to folk som skal ta rygg til rygg",
+      "Trekk ett kort fra en kortstokk, gjett om kortet er rødt eller svart. Har du riktig kan du dele ut tilsvarende slurker 2-14, bommer du; må du drikke tilsvarende",
+      "Drikk så mange slurker som personer i rommet som du tror har høyere bodycount enn deg",
+      "Tommel opp/ned, ville du heller bare kunne komme etter 1 minutt / 1 time?",
+      "Gjerrigknarken",
+      "Si din beste evne i sengen og ta tre slurker, eller ta 8 slurker",
+      "Velg deg en drikkepartner som varer helt til dere begge har drukket opp deres enhet",
+      "Den neste personen som sier et navn til en av de andre i rommet må ta 5 slurker",
+      "Del en shot med en person eller la den personen ta begge 2",
+      "Si et quiz-spørsmål som de andre i rommet må svare på. Alle får ett svar hver. Svarer du rett kan du dele ut 5 slurker", 
+      "Alle som har sett deg spy, drikk 3 slurker",
+      "Du må ha drukket opp enheten din før du kan gå på do",
+      "Velg en person som må chugge",
+      "Du må gjøre en dancemove hver gang du drikker helt til enheten er tom",
+      "Thumbmaster",
+      "Si en linje fra en sang før så personen til venstre for deg fortsetter med neste linje. Dette fortsetter helt til en person ikke klarer å si linjen. Denne personen drikker så 8 slurker",
+      "Kategori, Michael Jackson sanger",
+      "Du går inn på et utested med gjengen og går direkte på do, du kommer så ut og ser en av vennene dine flat som en pannekake på gulvet, hvem er det?",
+      "Fortell hva sangen som spiller nå heter, klarer du det, del ut 5 slurker, klarer du det ikke drikk 5",
+      // Legg til flere ledetekster ved behov
+    ];
+    
+    function pickRandom() {
+      const promptText = document.getElementById("prompt-text");
+      const playerNamesInput = document.getElementById("player-names");
+      
+      const playerNames = playerNamesInput.value.trim();
+      
+      if (playerNames === "") {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+      
+      const players = playerNames.split(",").map(player => player.trim()).filter(Boolean);
+      
+      if (players.length === 0) {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+      
+      if (prompts.length === 0) {
+        promptText.textContent = "Ingen flere ledetekster igjen.";
+        return;
+      }
+      
+      const randomPromptIndex = Math.floor(Math.random() * prompts.length);
+      const randomPlayerIndex = Math.floor(Math.random() * players.length);
+      
+      const selectedPrompt = prompts[randomPromptIndex];
+      const selectedPlayer = players[randomPlayerIndex];
+      
+      prompts.splice(randomPromptIndex, 1); // Fjern den valgte ledeteksten fra listen
+      
+      promptText.textContent = selectedPrompt + " - Spiller: " + selectedPlayer;
+    }
   </script>
 </body>
 </html>
