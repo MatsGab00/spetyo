@@ -147,7 +147,8 @@
 "Alle peker på én person i rommet, hvis noen fikk ingen pek; må de drikke 10 slurker",
 "Jeg har aldri, alle går i rundgang å sier hver sin",
 "Pekelek: Hvem er minst full og må chugge resten av enheten sin"
-];
+
+    ];
     
     function pickRandom() {
       const promptText = document.getElementById("prompt-text");
@@ -173,14 +174,31 @@
       }
       
       const randomPromptIndex = Math.floor(Math.random() * prompts.length);
-      const randomPlayerIndex = Math.floor(Math.random() * players.length);
-      
       const selectedPrompt = prompts[randomPromptIndex];
-      const selectedPlayer = players[randomPlayerIndex];
+      
+      // Replace placeholders with actual player names
+      const replacedPrompt = replacePlayerPlaceholders(selectedPrompt, players);
       
       prompts.splice(randomPromptIndex, 1); // Fjern den valgte ledeteksten fra listen
       
-      promptText.textContent = selectedPrompt + " - Spiller: " + selectedPlayer;
+      promptText.textContent = replacedPrompt;
+    }
+    
+    function replacePlayerPlaceholders(prompt, players) {
+      let replacedPrompt = prompt;
+      
+      // Replace "{player1}" with a random player
+      replacedPrompt = replacedPrompt.replace(/{player1}/g, getRandomPlayer(players));
+      
+      // Replace "{player2}" with a random player
+      replacedPrompt = replacedPrompt.replace(/{player2}/g, getRandomPlayer(players));
+      
+      return replacedPrompt;
+    }
+    
+    function getRandomPlayer(players) {
+      const randomIndex = Math.floor(Math.random() * players.length);
+      return players[randomIndex];
     }
   </script>
 </body>
