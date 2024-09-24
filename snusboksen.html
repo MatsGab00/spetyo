@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPETAKKEL</title>
+  <title>Godt og Blandet</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -168,7 +168,8 @@
       // Fjern den valgte ledeteksten fra listen
       prompts.splice(randomPromptIndex, 1);
       
-      promptText.textContent = finalPrompt + " - Spiller: " + selectedPlayer;
+      // Oppdater prompt-teksten uten "Spiller: (navn)"
+      promptText.textContent = finalPrompt;
     }
   </script>
 </body>
