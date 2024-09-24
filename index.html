@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPETAKKEL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+      color: #333;
+    }
+
+    .menu {
+      margin-top: 50px;
+    }
+
+    .menu button {
+      padding: 20px 40px;
+      font-size: 1.5em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Velg et spill</h1>
+
+  <div class="menu">
+    <button onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
+    <button onclick="startGame('snusboksen')">Snusboksen</button>
+  </div>
+
+  <script>
+    function startGame(game) {
+      if (game === 'godtOgBlandet') {
+        window.location.href = 'godtogblandet.html';  // Filen hvor "Godt og Blandet"-spillet er implementert
+      } else if (game === 'snusboksen') {
+        window.location.href = 'snusboksen.html';  // Filen hvor "Snusboksen"-spillet er implementert
+      }
+    }
+  </script>
+</body>
+</html>
