@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -75,57 +74,57 @@
   <h1>SPETAKKEL</h1>
   
   <div class="prompt">
-    <p id="prompt-text"></p>
+    <p id="prompt-text">Trykk på knappen for å velge en tilfeldig ledetekst og spiller.</p>
   </div>
   
   <div class="player-input">
     <label for="player-names">Spillernavn (kommaseparert):</label>
     <br>
-    <input type="text" id="player-names">
+    <input type="text" id="player-names" placeholder="F.eks. Ola, Kari, Per">
   </div>
   
   <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
   
   <script>
-    const prompts = [ 
-"Hvem er mest sannsynlig til å spy i kveld?"
-"Hvem er mest glad for at px er her?"
-"Hvem må drikke halve enheten sin?"
-"Hvem trenger å få seg noe i kveld?"
-"Hvem må vise px sitt beste sjekketriks eller ta 10 slurker?"
-"Hvem må drikke for hver gang de skal snakke til enheten sin er tom?"
-"Hvem kunne fått plass til en corona flaske i kjeften/halsen uten å gagge?"
-"Hvem kan dele ut 10 slurker?"
-"Hvem har kulest sveis?"
-"Hvem har mest gamer-skills?"
-"Hvem er dårligst sjåfør?"
-"Hvem har de mest interessante ørene?"
-"Hvem er mest slutty?"
-"Hvem er mest freaky?"
-"Hvem må drikke 10 slurker?"
-"Hvem har de beste drikkelekene?"
-"Hvem er avhengig av drikkeleker for å drikke?"
-"Hvem har det verste kostholdet?"
-"Hvem sovner med nattmat i trynet etter kveldens aktiviteter?"
-"Hvem får seg noe i dag?"
-"Hvem har mest unik rizz?"
-"Hvem har best peiling på moderne sleng?"
-"Hvem er voksen for alderen?"
-"Hvem er mentalt yngst?"
-"Hvem må skåle med px?"
-"Hvem bruker mesteparten av tiden på treningssenteret på mobilen?"
-"Hvem er søtest?"
-"Hvem må stå rygg til rygg med px?"
-"Hvem er mest akrobatisk?"
-"Hvem har høyest forventninger til kvelden?"
-"Hvem har lavest forventninger til kvelden?"
-"Hvem må fortelle det mest nerdete de har gjort den siste måneden?"
-"Hvem var mest glad for at px var med i dag?"
-"Hvem er mest edru og må drikke 10 slurker?"
-"Hvem er mest glad i kjøtt?"
-"Hvem kunne ikke vært her i dag uten alkohol?"
-"Hvem må i stirrekonkurranse med px?"
-"Hvem kan ikke engang gå på en rett linje edru?"
+    const prompts = [
+      "Hvem er mest sannsynlig til å spy i kveld?",
+      "Hvem er mest glad for at px er her?",
+      "Hvem må drikke halve enheten sin?",
+      "Hvem trenger å få seg noe i kveld?",
+      "Hvem må vise px sitt beste sjekketriks eller ta 10 slurker?",
+      "Hvem må drikke for hver gang de skal snakke til enheten sin er tom?",
+      "Hvem kunne fått plass til en corona flaske i kjeften/halsen uten å gagge?",
+      "Hvem kan dele ut 10 slurker?",
+      "Hvem har kulest sveis?",
+      "Hvem har mest gamer-skills?",
+      "Hvem er dårligst sjåfør?",
+      "Hvem har de mest interessante ørene?",
+      "Hvem er mest slutty?",
+      "Hvem er mest freaky?",
+      "Hvem må drikke 10 slurker?",
+      "Hvem har de beste drikkelekene?",
+      "Hvem er avhengig av drikkeleker for å drikke?",
+      "Hvem har det verste kostholdet?",
+      "Hvem sovner med nattmat i trynet etter kveldens aktiviteter?",
+      "Hvem får seg noe i dag?",
+      "Hvem har mest unik rizz?",
+      "Hvem har best peiling på moderne sleng?",
+      "Hvem er voksen for alderen?",
+      "Hvem er mentalt yngst?",
+      "Hvem må skåle med px?",
+      "Hvem bruker mesteparten av tiden på treningssenteret på mobilen?",
+      "Hvem er søtest?",
+      "Hvem må stå rygg til rygg med px?",
+      "Hvem er mest akrobatisk?",
+      "Hvem har høyest forventninger til kvelden?",
+      "Hvem har lavest forventninger til kvelden?",
+      "Hvem må fortelle det mest nerdete de har gjort den siste måneden?",
+      "Hvem var mest glad for at px var med i dag?",
+      "Hvem er mest edru og må drikke 10 slurker?",
+      "Hvem er mest glad i kjøtt?",
+      "Hvem kunne ikke vært her i dag uten alkohol?",
+      "Hvem må i stirrekonkurranse med px?",
+      "Hvem kan ikke engang gå på en rett linje edru?"
     ];
     
     function pickRandom() {
@@ -160,8 +159,8 @@
       // Fjern den valgte spilleren fra listen over tilgjengelige spillere for erstatning
       const remainingPlayers = players.filter(player => player !== selectedPlayer);
       
-      // Velg en tilfeldig spiller fra de gjenværende spillerne
-      const randomReplacementPlayer = remainingPlayers.length > 0 ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] : "";
+      // Velg en tilfeldig spiller fra de gjenværende spillerne hvis mulig, ellers tom streng
+      const randomReplacementPlayer = remainingPlayers.length > 0 ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] : selectedPlayer;
       
       // Erstatt "px" med den valgte spilleren i prompt-teksten
       const finalPrompt = selectedPrompt.replace(/px/g, randomReplacementPlayer);
