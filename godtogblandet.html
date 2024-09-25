@@ -71,4 +71,62 @@
   </style>
 </head>
 <body>
-  <h1>Godt &
+  <h1>Godt & Blandet</h1>
+  
+  <div class="prompt">
+    <p id="prompt-text"></p>
+  </div>
+  
+  <div class="player-input">
+    <label for="player-names">Spillernavn (kommaseparert):</label>
+    <br>
+    <input type="text" id="player-names">
+  </div>
+  
+  <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
+  
+  <script>
+    const prompts = [ 
+      // Ditt array med ledetekster
+    ];
+    
+    function pickRandom() {
+      const promptText = document.getElementById("prompt-text");
+      const playerNamesInput = document.getElementById("player-names");
+      
+      const playerNames = playerNamesInput.value.trim();
+      
+      if (playerNames === "") {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+      
+      const players = playerNames.split(",").map(player => player.trim()).filter(Boolean);
+      
+      if (players.length === 0) {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+      
+      if (prompts.length === 0) {
+        promptText.textContent = "Ingen flere ledetekster igjen.";
+        return;
+      }
+      
+      const randomPromptIndex = Math.floor(Math.random() * prompts.length);
+      const randomPlayerIndex = Math.floor(Math.random() * players.length);
+      
+      const selectedPrompt = prompts[randomPromptIndex];
+      const selectedPlayer = players[randomPlayerIndex];
+      
+      const remainingPlayers = players.filter(player => player !== selectedPlayer);
+      const randomReplacementPlayer = remainingPlayers.length > 0 ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] : "";
+      
+      const finalPrompt = selectedPrompt.replace(/px/g, randomReplacementPlayer);
+      prompts.splice(randomPromptIndex, 1);
+      
+      promptText.textContent = finalPrompt + " - Spiller: " + selectedPlayer;
+    }
+  </script>
+</body>
+</html>
