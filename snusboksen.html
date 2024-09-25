@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Godt og Blandet</title>
+  <title>Snusboksen</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
     h1 {
       margin-top: 20px;
       font-size: 2.5em;
-      color: #333;
+      color: red; /* Endret fargen på tittelen til rød */
     }
     
     .prompt {
@@ -71,7 +71,7 @@
   </style>
 </head>
 <body>
-  <h1>SPETAKKEL</h1>
+  <h1>Snusboksen</h1> <!-- Endret tittelen her -->
   
   <div class="prompt">
     <p id="prompt-text">Trykk på knappen for å velge en tilfeldig ledetekst og spiller.</p>
@@ -156,19 +156,13 @@
       const selectedPrompt = prompts[randomPromptIndex];
       const selectedPlayer = players[randomPlayerIndex];
       
-      // Fjern den valgte spilleren fra listen over tilgjengelige spillere for erstatning
       const remainingPlayers = players.filter(player => player !== selectedPlayer);
-      
-      // Velg en tilfeldig spiller fra de gjenværende spillerne hvis mulig, ellers tom streng
       const randomReplacementPlayer = remainingPlayers.length > 0 ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] : selectedPlayer;
       
-      // Erstatt "px" med den valgte spilleren i prompt-teksten
       const finalPrompt = selectedPrompt.replace(/px/g, randomReplacementPlayer);
       
-      // Fjern den valgte ledeteksten fra listen
       prompts.splice(randomPromptIndex, 1);
       
-      // Oppdater prompt-teksten uten "Spiller: (navn)"
       promptText.textContent = finalPrompt;
     }
   </script>
