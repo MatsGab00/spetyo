@@ -12,13 +12,11 @@
       padding: 0;
       background-color: #f8f9fa;
     }
-    
     h1 {
       margin-top: 20px;
       font-size: 2.5em;
-      color: blue; /* Endret til blå */
+      color: blue;
     }
-    
     .prompt {
       margin: 20px auto;
       max-width: 90%;
@@ -28,22 +26,18 @@
       background-color: #fff;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    
     #prompt-text {
       font-size: 1.2em;
       color: #555;
     }
-    
     .player-input {
       margin: 20px auto;
       max-width: 90%;
     }
-    
     label {
       font-size: 1.1em;
       color: #333;
     }
-    
     input {
       width: 100%;
       padding: 10px;
@@ -52,7 +46,6 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    
     button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -64,7 +57,6 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     button:hover {
       background-color: #45a049;
     }
@@ -74,7 +66,7 @@
   <h1>Godt & Blandet</h1>
   
   <div class="prompt">
-    <p id="prompt-text"></p>
+    <p id="prompt-text">Trykk på knappen for å starte!</p>
   </div>
   
   <div class="player-input">
@@ -86,140 +78,19 @@
   <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
   
   <script>
-    const prompts = [ 
-const prompts = [
-  "Velg selv, men vær kreativ da",
-  "Velg selv, men vær kreativ da",
-  "Velg selv, men vær kreativ da",
-  "Velg selv, men vær kreativ da",
-  "Velg selv, men vær kreativ da",
-  "Kategori, du bestemmer",
-  "Kategori, du bestemmer",
-  "Kategori, du bestemmer",
-  "Ta 5 slurker",
-  "Ta 5 slurker",
-  "Ta 5 slurker",
-  "Gi ut 10 slurker",
-  "Gi ut 10 slurker",
-  "Gi ut 10 slurker",
-  "Del ut 1 slurk til en person, denne personen deler så ut 2 slurker til en person osv. helt til 10 slurker er blitt gitt ut",
-  "Utfordre en i rommet til en utfordring, hvis du taper må du chugge",
-  "Syng en linje fra en sang, så sier personen til venstre neste linje. Personen som fucker opp må drikke 5 slurker",
-  "Drikk så mange slurker som du vil, del så ut tilsvarende",
-  "Alle går i rundgang og sier noe fint om personen til venstre. Skål for hver kommentar",
-  "Alle skåler",
-  "La de andre i rommet blande sammen to drikker som du skal smake på, feiler du må drikke resten, gjetter du riktig må alle andre drikke 5 slurker",
-  "Regel: til neste gang ditt navn blir valgt i leken kan du bare snakke engelsk, bryt på regel = chug",
-  "CHUG",
-  "Pekelek: beste stil",
-  "Pekelek: mest slutty",
-  "Pekelek: mest edru",
-  "Del ut så mange slurker som din body count eller chug",
-  "Ta så mange slurker som bodycounten din eller chug",
-  "Alle sier sin beste sjekkereplikk før dere gjør pekelek på hvem som hadde den verste (5 slurker)",
-  "Alle kan dele ut 5 slurker",
-  "Alle trekker et kort fra en kortstokk. Den som får det laveste må chugge",
-  "Drikk 5 slurker fra en av de andre spillerene (kan ikke være samme type drikke)",
-  "Rygg til rygg med px",
-  "Rygg til rygg med px",
-  "Rygg til rygg med px",
-  "Rygg til rygg med px",
-  "Pekelek, hvem må ta et shot av noe valgfritt",
-  "Alle som drikker øl skåler",
-  "Alle legger tlf på bordet, den som får opp en notifikasjon først må drikke halve enheten sin",
-  "Waterfall",
-  "Pekelek, hvem får seg noe i dag",
-  "Du og px gjør stirrekonkurranse, taper tar 8 slurker",
-  "Den yngste og eldste skåler",
-  "Trekk kort fra en kortstokk helt til du trekker en ess, så mange kort som du trakk er slurker du tar",
-  "Gjett hva sangen som spiller nå heter, klarer du det kan du dele ut 10 slurker",
-  "Du må drikke med motsatt hånd til navnet ditt kommer opp igjen i leken, bryt på regel er lik 5 slurker",
-  "2 sannhet og 1 løgn. De som gjetter feil må drikke 8 slurker",
-  "Drikk så mange slurker som personer i rommet",
-  "De som har ligget med noen i rommet drikker 5 slurker",
-  "Velg to personer som har 10 sekunder på å finne det morsomste bildet på telefonen deres. Den som hadde det morsomste kan dele ut 10 slurker",
-  "Vis den siste meldingen du skrev på Tinder eller ta 10 slurker. Har du ikke tinder tar du 5 slurker",
-  "Si så mange tall i pi som du klarer. For hvert tall kan du dele ut én slurk",
-  "Pekelek: hvem kunne hatt sex med seg selv",
-  "Nynn en frivillig sang, personen i rommet som gjetter riktig først kan dele ut 10 slurker",
-  "Pekelek: hvem er den største koffein avhengige",
-  "2 sannhet, 1 løgn. De som gjetter riktig kan dele ut 5 slurker",
-  "Pekelek: Hvem må chugge enheten sin?",
-  "Pekelek: Hvem har mest basic musikksmak?",
-  "Du må lage orgasmelyder for hver gang du drikker helt til enheten din er tom",
-  "Pekelek: Hvem har høyest snapscore? Hvis du pekte rett del ut 5 slurker",
-  "Pekelek, hvem hadde sex sist?",
-  "Pekelek: Hvem har best musikksmak?",
-  "Hvor mange slurker må ALLE ta?",
-  "Kategori: The Weeknd sanger",
-  "Pekelek: Hvem kunne meldt seg på paradise hotel?",
-  "De som hoster må ta 7 slurker",
-  "De som tar et shot, kan dele ut et shot. Den som blir utdelt et shot kan ikke dele videre.",
-  "Hvem i rommet av det samme kjønnet er den siste du kunne hatt med i en trekant",
-  "Bodyshot",
-  "Nynn en sang. Den første som gjetter kan dele ut 8 slurker",
-  "Beskriv måten du mistet jomfrudommen din med tre ord, eller ta 8 slurker",
-  "Pekelek: Hvem ser ut som de trenger en god klem?",
-  "Pekelek: Hvem er den største yapperen og burde heller bruke kjeften til å ta seg noen gode slurker",
-  "Den utvalgte velger mellom person rett ved høyre eller venstre, hvem må chugge?",
-  "Vis den siste meldingen du sendte på Tinder, eller ta 10 slurker",
-  "Alle peker på én person i rommet, hvis noen fikk ingen pek; må de drikke 10 slurker",
-  "Jeg har aldri, alle går i rundgang å sier hver sin",
-  "Pekelek: Hvem er minst full og må chugge resten av enheten sin",
-  "Ta 10 slurker hvis du fortsatt er på din første enhet",
-  "Drikk så mange slurker som personer i rommet du er venner med på Snapchat",
-  "Tommel opp/ned: sende melding på Snapchat/sende melding på tekstmelding",
-  "Pekelek: Hvem har den beste hårsveisen?",
-  "Nevn to personer i rommet. Den ene minner deg om en steinbit og den andre er totalt sett en fantastisk person. Ikke si hvem som er hvem",
-  "Hvis noen har bursdag i dag, må de chugge!",
-  "Hva var det siste komplimentet du fikk som du satt virkelig stor pris på?",
-  "Du må snakke som Yoda helt til enhet din er tom, eller chug",
-  "Pekelek: Hvem er verst i Mario Kart",
-  "Alle går på rundgang og sier hver sin «Jeg har aldri»",
-  "Kyss en i rommet, hvis du gjør dette kan du og personen du kysset dele ut 6 slurker hver",
-  "Du og px er nå svirebrødre. Hver gang den ene drikker, må den andre drikke. Varer til begge sin enhet er tom",
-  "Pekelek: Hvem er den største skrytepaven?",
-  "Personene som sitter til høyre og venstre for den utvalgte sier hver sin sang. Sangen som den utvalgte liker best vinner, og vinneren kan dele ut 12 slurker",
-  "Chug enheten din eller la medspillere blande sammen et glass med to drikker som må tømmes ila. 30 min",
-  "Pekelek: Hvem er best på å leve i nuet?",
-  "Den neste som tar snus må chugge, den utvalgte er ansvarlig for å følge med",
-  "Den neste personen som chugger kan dele ut 10 slurker",
-  "Velg en person i rommet og velg hvor mange slurker dere begge må drikke",
-  "Kategori: unnskyldninger til hvorfor du kom for sent til timen",
-  "Alle peker på én i rommet, drikk så mange slurker som pek du får",
-  "Kategori: kvinnelige skuespillere",
-  "Kategori: du bestemmer",
-  "Si noe som skal skåles for",
-  "Pekelek: Hvem er den største hateren?",
-  "Pekelek: du bestemmer",
-  "Pekelek: du bestemmer",
-  "Si noe med px du er sjalu på, også vice versa. Skål når dette er unnagjort",
-  "Alle går i rundgang og sier ett ord som beskriver drømmemannen/drømmedamen til den utvalgte. Hvis en person sier noe som ikke stemmer eller sier ingenting må de drikke 8 slurker",
-  "Pekelek: Hvem hadde uironisk beskrevet seg selv som en alpha-male",
-  "Pekelek: Hvem er smartest (hvilke type smart er opp til egen tolkning)",
-  "Pekelek: Hvem tror selv de er smartest",
-  "Bytt enhet med px og drikk 5 slurker hver",
-  "Du er fra nå av drikkepoliti, dette betyr at du skal sørge for at alle drikker de slurkene de skal. Som betaling får du en pistol med én kule. Personen du skyter må chugge",
-  "Kategori: Pokémon",
-  "Hvem er den siste du ville hatt med deg på en øde øy? Den utvalgte drikker 5 slurker",
-  "Pekelek: Hvem har et barn de ikke vet om",
-  "Kategori EXTREM VERSJON: personen som taper må chugge. Du bestemmer kategori",
-  "Den neste som gjesper må CHUGGE",
-  "Chuggable Offense: Du kan kalle ut en forbrytelse hos en person (for eksempel: en person har to forskjellige sokker på). Demokratiet bestemmer om personen må CHUGGE",
-  "Kategori: ting du kan finne i baderomsbosset",
-  "Kategori: sanger med over 1mrd avspillinger på Spotify",
-  "Kategori: artister som den utvalgte har i sin topp 100 artister",
-  "Hvis du ikke kjenner en person i rommet, skål med dem"
-];
-)
-];
-
+    const prompts = [
+      "Velg selv, men vær kreativ da",
+      "Kategori, du bestemmer",
+      "Ta 5 slurker",
+      "Gi ut 10 slurker",
+      "Del ut 1 slurk til en person, denne personen deler så ut 2 slurker til en person osv. helt til 10 slurker er blitt gitt ut",
+      "Utfordre en i rommet til en utfordring, hvis du taper må du chugge",
+      "Syng en linje fra en sang, så sier personen til venstre neste linje. Personen som fucker opp må drikke 5 slurker"
     ];
     
     function pickRandom() {
       const promptText = document.getElementById("prompt-text");
       const playerNamesInput = document.getElementById("player-names");
-      
       const playerNames = playerNamesInput.value.trim();
       
       if (playerNames === "") {
@@ -246,7 +117,9 @@ const prompts = [
       const selectedPlayer = players[randomPlayerIndex];
       
       const remainingPlayers = players.filter(player => player !== selectedPlayer);
-      const randomReplacementPlayer = remainingPlayers.length > 0 ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] : "";
+      const randomReplacementPlayer = remainingPlayers.length > 0 
+        ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] 
+        : selectedPlayer;
       
       const finalPrompt = selectedPrompt.replace(/px/g, randomReplacementPlayer);
       prompts.splice(randomPromptIndex, 1);
