@@ -72,7 +72,7 @@
   <div class="player-input">
     <label for="player-names">Spillernavn (kommaseparert):</label>
     <br>
-    <input type="text" id="player-names">
+    <input type="text" id="player-names" placeholder="Skriv inn navnene her...">
   </div>
   
   <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
@@ -135,44 +135,54 @@
 ];
 
     ];
-    
+
     function pickRandom() {
       const promptText = document.getElementById("prompt-text");
       const playerNamesInput = document.getElementById("player-names");
       const playerNames = playerNamesInput.value.trim();
-      
+
       if (playerNames === "") {
         alert("Vennligst skriv inn minst ett spillernavn.");
         return;
       }
-      
-      const players = playerNames.split(",").map(player => player.trim()).filter(Boolean);
-      
+
+      // Splitt spillerne, fjern tomme strenger og trim whitespace
+      const players = playerNames
+        .split(",")
+        .map(player => player.trim())
+        .filter(player => player.length > 0);
+
       if (players.length === 0) {
         alert("Vennligst skriv inn minst ett spillernavn.");
         return;
       }
-      
+
       if (prompts.length === 0) {
         promptText.textContent = "Ingen flere ledetekster igjen.";
         return;
       }
-      
+
+      // Velg tilfeldig prompt og spiller
       const randomPromptIndex = Math.floor(Math.random() * prompts.length);
       const randomPlayerIndex = Math.floor(Math.random() * players.length);
-      
+
       const selectedPrompt = prompts[randomPromptIndex];
       const selectedPlayer = players[randomPlayerIndex];
-      
+
+      // Finn en erstatningsspiller for 'px', om nødvendig
       const remainingPlayers = players.filter(player => player !== selectedPlayer);
-      const randomReplacementPlayer = remainingPlayers.length > 0 
-        ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] 
-        : selectedPlayer;
-      
-      const finalPrompt = selectedPrompt.replace(/px/g, randomReplacementPlayer);
+      const replacementPlayer = remainingPlayers.length > 0
+        ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)]
+        : selectedPlayer; // Bruk samme spiller hvis ingen andre finnes
+
+      // Erstatt 'px' i prompt
+      const finalPrompt = selectedPrompt.replace(/px/g, replacementPlayer);
+
+      // Fjern brukt prompt fra listen
       prompts.splice(randomPromptIndex, 1);
-      
-      promptText.textContent = finalPrompt + " - Spiller: " + selectedPlayer;
+
+      // Oppdater teksten i grensesnittet
+      promptText.textContent = `${finalPrompt} - Spiller: ${selectedPlayer}`;
     }
   </script>
 </body>
