@@ -77,8 +77,8 @@
   
   <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
   
-  <script>
-    const prompts = [
+<script>
+  const prompts = [
   "Nynn en sang. Den første som gjetter kan dele ut 8 slurker",
   "Beskriv måten du mistet jomfrudommen din med tre ord, eller ta 8 slurker",
   "Pekelek: Hvem ser ut som de trenger en god klem?",
@@ -132,52 +132,52 @@
   "Kategori: sanger med over 1mrd avspillinger på Spotify",
   "Kategori: artister som den utvalgte har i sin topp 100 artister",
   "Hvis du ikke kjenner en person i rommet, skål med dem"
-];
 
-    ];
+  function pickRandom() {
+    const promptText = document.getElementById("prompt-text");
+    const playerNamesInput = document.getElementById("player-names");
+    const playerNames = playerNamesInput.value.trim();
 
-    function pickRandom() {
-      const promptText = document.getElementById("prompt-text");
-      const playerNamesInput = document.getElementById("player-names");
-      const playerNames = playerNamesInput.value.trim();
-
-      if (playerNames === "") {
-        alert("Vennligst skriv inn minst ett spillernavn.");
-        return;
-      }
-
-      const players = playerNames
-        .split(",")
-        .map(player => player.trim())
-        .filter(player => player.length > 0);
-
-      if (players.length === 0) {
-        alert("Vennligst skriv inn minst ett spillernavn.");
-        return;
-      }
-
-      if (prompts.length === 0) {
-        promptText.textContent = "Ingen flere ledetekster igjen.";
-        return;
-      }
-
-      const randomPromptIndex = Math.floor(Math.random() * prompts.length);
-      const randomPlayerIndex = Math.floor(Math.random() * players.length);
-
-      const selectedPrompt = prompts[randomPromptIndex];
-      const selectedPlayer = players[randomPlayerIndex];
-
-      const remainingPlayers = players.filter(player => player !== selectedPlayer);
-      const replacementPlayer = remainingPlayers.length > 0
-        ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)]
-        : selectedPlayer; // Bruk samme spiller hvis ingen andre finnes
-
-      const finalPrompt = selectedPrompt.replace(/px/g, replacementPlayer);
-
-      prompts.splice(randomPromptIndex, 1);
-
-      promptText.textContent = `${finalPrompt} - Spiller: ${selectedPlayer}`;
+    if (playerNames === "") {
+      alert("Vennligst skriv inn minst ett spillernavn.");
+      return;
     }
-  </script>
+
+    const players = playerNames
+      .split(",")
+      .map(player => player.trim())
+      .filter(player => player.length > 0);
+
+    if (players.length === 0) {
+      alert("Vennligst skriv inn minst ett gyldig spillernavn.");
+      return;
+    }
+
+    if (prompts.length === 0) {
+      promptText.textContent = "Ingen flere ledetekster igjen. Takk for at du spilte!";
+      return;
+    }
+
+    const randomPromptIndex = Math.floor(Math.random() * prompts.length);
+    const randomPlayerIndex = Math.floor(Math.random() * players.length);
+
+    const selectedPrompt = prompts[randomPromptIndex];
+    const selectedPlayer = players[randomPlayerIndex];
+
+    const remainingPlayers = players.filter(player => player !== selectedPlayer);
+    const replacementPlayer = remainingPlayers.length > 0
+      ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)]
+      : selectedPlayer;
+
+    const finalPrompt = selectedPrompt.includes("px")
+      ? selectedPrompt.replace(/px/g, replacementPlayer)
+      : selectedPrompt;
+
+    prompts.splice(randomPromptIndex, 1);
+
+    promptText.textContent = `${finalPrompt} - Spiller: ${selectedPlayer}`;
+  }
+</script>
+
 </body>
 </html>
