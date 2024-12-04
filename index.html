@@ -26,7 +26,6 @@
     .menu button {
       padding: 20px 40px;
       font-size: 1.5em;
-      background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 5px;
@@ -35,8 +34,26 @@
       transition: background-color 0.3s ease;
     }
 
-    .menu button:hover {
-      background-color: #f50f00;
+    /* Unike farger for knappene */
+    .godt-og-blandet {
+      background-color: #007BFF; /* Blå */
+    }
+    .godt-og-blandet:hover {
+      background-color: #0056b3; /* Mørkere blå ved hover */
+    }
+
+    .snusboksen {
+      background-color: #28a745; /* Grønn */
+    }
+    .snusboksen:hover {
+      background-color: #1e7e34; /* Mørkere grønn ved hover */
+    }
+
+    .akevitt-og-glogg {
+      background-color: #dc3545; /* Rød */
+    }
+    .akevitt-og-glogg:hover {
+      background-color: #a71d2a; /* Mørkere rød ved hover */
     }
   </style>
 </head>
@@ -44,9 +61,9 @@
   <h1>Velg et spill</h1>
 
   <div class="menu">
-    <button onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
-    <button onclick="startGame('snusboksen')">Snusboksen</button>
-    <button onclick="startGame('akevittOgGlogg')">Akevitt og Gløgg</button>
+    <button class="godt-og-blandet" onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
+    <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
+    <button class="akevitt-og-glogg" onclick="startGame('akevittOgGlogg')">Akevitt og Gløgg</button>
   </div>
 
   <script>
