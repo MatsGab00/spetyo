@@ -81,26 +81,42 @@
     .dialog-box {
       display: none;
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      text-align: center;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
+      background-color: white;
+      padding: 20px;
+      border-top: 2px solid #ccc;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .dialog-box button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .dialog-box .yes-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .dialog-box .yes-button:hover {
+      background-color: #45a049;
+    }
+
+    .dialog-box .no-button {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .dialog-box .no-button:hover {
+      background-color: #a71d2a;
     }
   </style>
 </head>
@@ -121,11 +137,10 @@
 
   <button class="tilbake-knapp" onclick="showDialog()">Tilbake til Meny</button>
 
-  <div class="overlay" id="overlay"></div>
   <div class="dialog-box" id="dialogBox">
     <p>Ønsker du å gå tilbake til menyen?</p>
-    <button onclick="goToMenu()">Ja</button>
-    <button onclick="closeDialog()">Nei</button>
+    <button class="yes-button" onclick="goToMenu()">Ja</button>
+    <button class="no-button" onclick="closeDialog()">Nei</button>
   </div>
 
   <script>
@@ -165,12 +180,10 @@
 
     function showDialog() {
       document.getElementById('dialogBox').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
     }
 
     function closeDialog() {
       document.getElementById('dialogBox').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
     }
 
     function goToMenu() {
