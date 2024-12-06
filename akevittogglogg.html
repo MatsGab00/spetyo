@@ -34,25 +34,6 @@
       color: #555;
     }
     
-    .player-input {
-      margin: 20px auto;
-      max-width: 90%;
-    }
-    
-    label {
-      font-size: 1.1em;
-      color: #333;
-    }
-    
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    
     button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -124,16 +105,10 @@
   <h1>Akevitt & Gløgg</h1>
   
   <div class="prompt">
-    <p id="prompt-text">Trykk på knappen for å velge en tilfeldig ledetekst og spiller.</p>
+    <p id="prompt-text">Trykk på knappen for å velge en tilfeldig ledetekst.</p>
   </div>
   
-  <div class="player-input">
-    <label for="player-names">Spillernavn (kommaseparert):</label>
-    <br>
-    <input type="text" id="player-names" placeholder="F.eks. Ola, Kari, Per">
-  </div>
-  
-  <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
+  <button onclick="pickRandom()">Neste</button>
 
   <button class="tilbake-knapp" onclick="showDialog()">Tilbake til Meny</button>
 
@@ -151,16 +126,6 @@
 
     function pickRandom() {
       const promptText = document.getElementById("prompt-text");
-      const playerNamesInput = document.getElementById("player-names");
-      
-      const playerNames = playerNamesInput.value.trim();
-      
-      if (playerNames === "") {
-        alert("Vennligst skriv inn minst ett spillernavn.");
-        return;
-      }
-      
-      const players = playerNames.split(",").map(player => player.trim()).filter(Boolean);
       
       if (prompts.length === 0) {
         promptText.textContent = "Ingen flere ledetekster igjen.";
@@ -168,14 +133,11 @@
       }
       
       const randomPromptIndex = Math.floor(Math.random() * prompts.length);
-      const randomPlayerIndex = Math.floor(Math.random() * players.length);
-      
       const selectedPrompt = prompts[randomPromptIndex];
-      const selectedPlayer = players[randomPlayerIndex];
       
       prompts.splice(randomPromptIndex, 1);
       
-      promptText.textContent = `${selectedPlayer}: ${selectedPrompt}`;
+      promptText.textContent = selectedPrompt;
     }
 
     function showDialog() {
