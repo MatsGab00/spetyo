@@ -61,6 +61,13 @@
     .akevitt-og-glogg:hover {
       background-color: #a71d2a; /* Mørkere rød ved hover */
     }
+
+    .afterskitings {
+      background-color: #ff9900; /* Oransje */
+    }
+    .afterskitings:hover {
+      background-color: #cc7a00; /* Mørkere oransje ved hover */
+    }
   </style>
 </head>
 <body>
@@ -70,6 +77,7 @@
     <button class="godt-og-blandet" onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
     <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
     <button class="akevitt-og-glogg" onclick="startGame('akevittOgGlogg')">Akevitt og Gløgg</button>
+    <button class="afterskitings" onclick="startGame('afterskitings')">Afterskitings</button>
   </div>
 
   <script>
@@ -80,6 +88,8 @@
         window.location.href = 'snusboksen.html';  // Filen hvor "Snusboksen"-spillet er implementert
       } else if (game === 'akevittOgGlogg') {
         window.location.href = 'akevittogglogg.html';  // Filen hvor "Akevitt og Gløgg"-spillet er implementert
+      } else if (game === 'afterskitings') {
+        window.location.href = 'afterskitings.html';  // Filen hvor "Afterskitings"-spillet er implementert
       }
     }
   </script>
