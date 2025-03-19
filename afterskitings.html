@@ -187,10 +187,10 @@
       // Velg en tilfeldig spiller
       const randomPlayer = players[Math.floor(Math.random() * players.length)];
 
-      // Erstatt "px" med tilfeldig spiller i ledetekstene
+      // Erstatt alle forekomster av "px" med den tilfeldige spilleren
       const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)].replace(/px/g, randomPlayer);
       
-      promptText.textContent = `${randomPrompt}`;
+      promptText.textContent = randomPrompt;
     }
 
     function showDialog() {
