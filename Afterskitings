@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afterskitings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #ffeb3b;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+      color: #000;
+    }
+    .prompt {
+      margin: 20px auto;
+      max-width: 90%;
+      padding: 20px;
+      border: 1px solid #000;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #prompt-text {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .player-input {
+      margin: 20px auto;
+      max-width: 90%;
+    }
+    label {
+      font-size: 1.1em;
+      color: #000;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1em;
+      border: 1px solid #000;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e68900;
+    }
+    .tilbake-knapp {
+      background-color: #d32f2f;
+      color: white;
+    }
+    .tilbake-knapp:hover {
+      background-color: #b71c1c;
+    }
+    .dialog-box {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 20px;
+      border-top: 2px solid #000;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1000;
+    }
+    .dialog-box button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .dialog-box .yes-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .dialog-box .yes-button:hover {
+      background-color: #45a049;
+    }
+    .dialog-box .no-button {
+      background-color: #dc3545;
+      color: white;
+    }
+    .dialog-box .no-button:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Afterskitings</h1>
+  
+  <div class="prompt">
+    <p id="prompt-text">Trykk på knappen for å starte!</p>
+  </div>
+  
+  <div class="player-input">
+    <label for="player-names">Spillernavn (kommaseparert):</label>
+    <br>
+    <input type="text" id="player-names" placeholder="Skriv inn navnene her...">
+  </div>
+  
+  <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
+  <button class="tilbake-knapp" onclick="showDialog()">Tilbake til Meny</button>
+
+  <div class="dialog-box" id="dialogBox">
+    <p>Ønsker du å gå tilbake til menyen?</p>
+    <button class="yes-button" onclick="goToMenu()">Ja</button>
+    <button class="no-button" onclick="closeDialog()">Nei</button>
+  </div>
+  
+  <script>
+    const prompts = [
+"Pekelek: hvem må chugge",  
+"px må snakke med østlandsk dialekt til enheten er tom",  
+"De som er på telefonen drikker 5 slurker, følg med!",  
+"Kategori: Olympiske grener i Vinter-OL, px starter",  
+"Rimelek: bakke, px begynner",  
+"px skåler med px og sier én ting de liker ved personen",  
+"px tenker på en kvinnelig popartist, alle går i rundgang å gjetter hvem de tenker på, ikke svar om det er feil/rett før runden er gått, de som gjetter rett kan dele ut 10 slurker",  
+"Pekelek: Hvem i rommet er best på ski",  
+"Pekelek: Hvem ELSKER snø",  
+"Rygg til Rygg: px og px",  
+"Rygg til Rygg: px og px",  
+"Rygg til Rygg: px og px",  
+"TAMPEN BRENNER: px gjemmer et shotglass et sted i rommet. px har 1 minutt å finne det på, klarer de det innen tiden kan de gi shottet til noen andre; om ikke tar de det selv",  
+"Alle trekker et kort fra en kortstokk, den som trekker det laveste drikker 10 slurker",  
+"Alle trekker et kort fra en kortstokk, drikk like mange slurker som tilsvarer kortet (ess=14)",  
+"px er drikkepoliti fra nå av, du må sørge for at alle drikker det de skal, i tillegg får du en revolver med tre kuler (en kule= 3 slurker)",  
+"Kategori: px bestemmer",  
+"Kategori: px bestemmer",  
+"px gjør bodyshot av én av naboene, om ikke må du chugge",  
+"Kategori: klesmerker for vinterklær/skiklær, px starter",  
+"px kan si en regel som gjelder helt til px sin enhet er tom",  
+"Den som har nærmest bursdag må drikke halve enheten sin",  
+"px, om du kan gjette tittelen på sangen som spiller nå kan du dele ut 15 slurker",  
+"Rimelek: Hytte, px starter",  
+"px, nynn en sang. Den første som gjetter riktig kan dele ut 10 slurker. Alle kan bare gjette én gang",  
+"Kategori: grunner til å gå på afterski",  
+"px må ta dobbelt slurker til enheten deres er tom",  
+"px tar en frivillig mengde slurker og deler ut tilsvarende",  
+"px, si en kontroversiell mening eller ta 5 slurker",  
+"På 3 sier alle et tall mellom 3-10. De som sier det samme tallet må ta tilsvarende slurker",  
+"Kategori: skiløpere, taper må snakke som Northug helt til enheten er tom. px starter",  
+"px skal la medspillerne blande to drikker på bordet sammen. Gjetter de riktig kan de dele ut 10 slurker, tar de feil må de tømme drikken",  
+"Kategori: skiutstyr, px starter",  
+"Kategori: Ting som er kalde: px starter",  
+"px tenker på et band, alle går i rundgang å gjetter. Ikke si om det er rett/feil før alle har gjettet. De som gjetter rett kan dele ut 15 slurker",  
+"Bullshit: px velger en kategori, spillere går frem og tilbake på hvor mange av kategorien de kan si. Den som sier det høyeste tallet må bevise hva de kan og si så mange innen kategorien. Om de klarer det kan de dele ut tilsvarende slurker, om ikke tar de slurkene selv"  
+    ];
+
+    function pickRandom() {
+      const promptText = document.getElementById("prompt-text");
+      const playerNamesInput = document.getElementById("player-names");
+      const playerNames = playerNamesInput.value.trim();
+
+      if (playerNames === "") {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+
+      const players = playerNames.split(",").map(player => player.trim()).filter(player => player.length > 0);
+
+      if (players.length === 0) {
+        alert("Vennligst skriv inn minst ett gyldig spillernavn.");
+        return;
+      }
+
+      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      const randomPlayer = players[Math.floor(Math.random() * players.length)];
+      promptText.textContent = `${randomPrompt} - Spiller: ${randomPlayer}`;
+    }
+
+    function showDialog() {
+      document.getElementById('dialogBox').style.display = 'block';
+    }
+
+    function closeDialog() {
+      document.getElementById('dialogBox').style.display = 'none';
+    }
+
+    function goToMenu() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
