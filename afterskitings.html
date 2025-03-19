@@ -10,12 +10,13 @@
       text-align: center;
       margin: 0;
       padding: 0;
-      background-color: #ffeb3b;
+      background-color: #ffffff; /* Hvit bakgrunn */
     }
     h1 {
       margin-top: 20px;
       font-size: 2.5em;
-      color: #000;
+      color: #ffeb3b; /* Gul farge */
+      text-transform: capitalize; /* Stor forbokstav */
     }
     .prompt {
       margin: 20px auto;
@@ -128,42 +129,42 @@
   
   <script>
     const prompts = [
-"Pekelek: hvem må chugge",  
-"px må snakke med østlandsk dialekt til enheten er tom",  
-"De som er på telefonen drikker 5 slurker, følg med!",  
-"Kategori: Olympiske grener i Vinter-OL, px starter",  
-"Rimelek: bakke, px begynner",  
-"px skåler med px og sier én ting de liker ved personen",  
-"px tenker på en kvinnelig popartist, alle går i rundgang å gjetter hvem de tenker på, ikke svar om det er feil/rett før runden er gått, de som gjetter rett kan dele ut 10 slurker",  
-"Pekelek: Hvem i rommet er best på ski",  
-"Pekelek: Hvem ELSKER snø",  
-"Rygg til Rygg: px og px",  
-"Rygg til Rygg: px og px",  
-"Rygg til Rygg: px og px",  
-"TAMPEN BRENNER: px gjemmer et shotglass et sted i rommet. px har 1 minutt å finne det på, klarer de det innen tiden kan de gi shottet til noen andre; om ikke tar de det selv",  
-"Alle trekker et kort fra en kortstokk, den som trekker det laveste drikker 10 slurker",  
-"Alle trekker et kort fra en kortstokk, drikk like mange slurker som tilsvarer kortet (ess=14)",  
-"px er drikkepoliti fra nå av, du må sørge for at alle drikker det de skal, i tillegg får du en revolver med tre kuler (en kule= 3 slurker)",  
-"Kategori: px bestemmer",  
-"Kategori: px bestemmer",  
-"px gjør bodyshot av én av naboene, om ikke må du chugge",  
-"Kategori: klesmerker for vinterklær/skiklær, px starter",  
-"px kan si en regel som gjelder helt til px sin enhet er tom",  
-"Den som har nærmest bursdag må drikke halve enheten sin",  
-"px, om du kan gjette tittelen på sangen som spiller nå kan du dele ut 15 slurker",  
-"Rimelek: Hytte, px starter",  
-"px, nynn en sang. Den første som gjetter riktig kan dele ut 10 slurker. Alle kan bare gjette én gang",  
-"Kategori: grunner til å gå på afterski",  
-"px må ta dobbelt slurker til enheten deres er tom",  
-"px tar en frivillig mengde slurker og deler ut tilsvarende",  
-"px, si en kontroversiell mening eller ta 5 slurker",  
-"På 3 sier alle et tall mellom 3-10. De som sier det samme tallet må ta tilsvarende slurker",  
-"Kategori: skiløpere, taper må snakke som Northug helt til enheten er tom. px starter",  
-"px skal la medspillerne blande to drikker på bordet sammen. Gjetter de riktig kan de dele ut 10 slurker, tar de feil må de tømme drikken",  
-"Kategori: skiutstyr, px starter",  
-"Kategori: Ting som er kalde: px starter",  
-"px tenker på et band, alle går i rundgang å gjetter. Ikke si om det er rett/feil før alle har gjettet. De som gjetter rett kan dele ut 15 slurker",  
-"Bullshit: px velger en kategori, spillere går frem og tilbake på hvor mange av kategorien de kan si. Den som sier det høyeste tallet må bevise hva de kan og si så mange innen kategorien. Om de klarer det kan de dele ut tilsvarende slurker, om ikke tar de slurkene selv"  
+      "Pekelek: hvem må chugge",  
+      "px må snakke med østlandsk dialekt til enheten er tom",  
+      "De som er på telefonen drikker 5 slurker, følg med!",  
+      "Kategori: Olympiske grener i Vinter-OL, px starter",  
+      "Rimelek: bakke, px begynner",  
+      "px skåler med px og sier én ting de liker ved personen",  
+      "px tenker på en kvinnelig popartist, alle går i rundgang å gjetter hvem de tenker på, ikke svar om det er feil/rett før runden er gått, de som gjetter rett kan dele ut 10 slurker",  
+      "Pekelek: Hvem i rommet er best på ski",  
+      "Pekelek: Hvem ELSKER snø",  
+      "Rygg til Rygg: px og px",  
+      "Rygg til Rygg: px og px",  
+      "Rygg til Rygg: px og px",  
+      "TAMPEN BRENNER: px gjemmer et shotglass et sted i rommet. px har 1 minutt å finne det på, klarer de det innen tiden kan de gi shottet til noen andre; om ikke tar de det selv",  
+      "Alle trekker et kort fra en kortstokk, den som trekker det laveste drikker 10 slurker",  
+      "Alle trekker et kort fra en kortstokk, drikk like mange slurker som tilsvarer kortet (ess=14)",  
+      "px er drikkepoliti fra nå av, du må sørge for at alle drikker det de skal, i tillegg får du en revolver med tre kuler (en kule= 3 slurker)",  
+      "Kategori: px bestemmer",  
+      "Kategori: px bestemmer",  
+      "px gjør bodyshot av én av naboene, om ikke må du chugge",  
+      "Kategori: klesmerker for vinterklær/skiklær, px starter",  
+      "px kan si en regel som gjelder helt til px sin enhet er tom",  
+      "Den som har nærmest bursdag må drikke halve enheten sin",  
+      "px, om du kan gjette tittelen på sangen som spiller nå kan du dele ut 15 slurker",  
+      "Rimelek: Hytte, px starter",  
+      "px, nynn en sang. Den første som gjetter riktig kan dele ut 10 slurker. Alle kan bare gjette én gang",  
+      "Kategori: grunner til å gå på afterski",  
+      "px må ta dobbelt slurker til enheten deres er tom",  
+      "px tar en frivillig mengde slurker og deler ut tilsvarende",  
+      "px, si en kontroversiell mening eller ta 5 slurker",  
+      "På 3 sier alle et tall mellom 3-10. De som sier det samme tallet må ta tilsvarende slurker",  
+      "Kategori: skiløpere, taper må snakke som Northug helt til enheten er tom. px starter",  
+      "px skal la medspillerne blande to drikker på bordet sammen. Gjetter de riktig kan de dele ut 10 slurker, tar de feil må de tømme drikken",  
+      "Kategori: skiutstyr, px starter",  
+      "Kategori: Ting som er kalde: px starter",  
+      "px tenker på et band, alle går i rundgang å gjetter. Ikke si om det er rett/feil før alle har gjettet. De som gjetter rett kan dele ut 15 slurker",  
+      "Bullshit: px velger en kategori, spillere går frem og tilbake på hvor mange av kategorien de kan si. Den som sier det høyeste tallet må bevise hva de kan og si så mange innen kategorien. Om de klarer det kan de dele ut tilsvarende slurker, om ikke tar de slurkene selv"  
     ];
 
     function pickRandom() {
