@@ -184,9 +184,13 @@
         return;
       }
 
-      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      // Velg en tilfeldig spiller
       const randomPlayer = players[Math.floor(Math.random() * players.length)];
-      promptText.textContent = `${randomPrompt} - Spiller: ${randomPlayer}`;
+
+      // Erstatt "px" med tilfeldig spiller i ledetekstene
+      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)].replace(/px/g, randomPlayer);
+      
+      promptText.textContent = `${randomPrompt}`;
     }
 
     function showDialog() {
