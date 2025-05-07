@@ -16,7 +16,7 @@
     h1 {
       margin-top: 20px;
       font-size: 2.5em;
-      color: purple; /* Endret farge til lilla */
+      color: purple;
     }
 
     .fun-image {
@@ -40,33 +40,18 @@
       transition: background-color 0.3s ease;
     }
 
-    /* Unike farger for knappene */
     .godt-og-blandet {
-      background-color: #007BFF; /* Blå */
+      background-color: #007BFF;
     }
     .godt-og-blandet:hover {
-      background-color: #0056b3; /* Mørkere blå ved hover */
+      background-color: #0056b3;
     }
 
     .snusboksen {
-      background-color: #28a745; /* Grønn */
+      background-color: #28a745;
     }
     .snusboksen:hover {
-      background-color: #1e7e34; /* Mørkere grønn ved hover */
-    }
-
-    .akevitt-og-glogg {
-      background-color: #dc3545; /* Rød */
-    }
-    .akevitt-og-glogg:hover {
-      background-color: #a71d2a; /* Mørkere rød ved hover */
-    }
-
-    .afterskitings {
-      background-color: #ff9900; /* Oransje */
-    }
-    .afterskitings:hover {
-      background-color: #cc7a00; /* Mørkere oransje ved hover */
+      background-color: #1e7e34;
     }
   </style>
 </head>
@@ -76,20 +61,14 @@
   <div class="menu">
     <button class="godt-og-blandet" onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
     <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
-    <button class="akevitt-og-glogg" onclick="startGame('akevittOgGlogg')">Akevitt og Gløgg</button>
-    <button class="afterskitings" onclick="startGame('afterskitings')">Afterskitings</button>
   </div>
 
   <script>
     function startGame(game) {
       if (game === 'godtOgBlandet') {
-        window.location.href = 'godtogblandet.html';  // Filen hvor "Godt og Blandet"-spillet er implementert
+        window.location.href = 'godtogblandet.html';
       } else if (game === 'snusboksen') {
-        window.location.href = 'snusboksen.html';  // Filen hvor "Snusboksen"-spillet er implementert
-      } else if (game === 'akevittOgGlogg') {
-        window.location.href = 'akevittogglogg.html';  // Filen hvor "Akevitt og Gløgg"-spillet er implementert
-      } else if (game === 'afterskitings') {
-        window.location.href = 'afterskitings.html';  // Filen hvor "Afterskitings"-spillet er implementert
+        window.location.href = 'snusboksen.html';
       }
     }
   </script>
