@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rødt, hvitt og shot</title>
   <style>
     body {
@@ -12,13 +12,13 @@
       padding: 0;
       background-color: #f8f9fa;
     }
-    
+
     h1 {
       margin-top: 20px;
       font-size: 2.5em;
       color: red;
     }
-    
+
     .prompt {
       margin: 20px auto;
       max-width: 90%;
@@ -28,22 +28,22 @@
       background-color: #fff;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    
+
     #prompt-text {
       font-size: 1.2em;
       color: #555;
     }
-    
+
     .player-input {
       margin: 20px auto;
       max-width: 90%;
     }
-    
+
     label {
       font-size: 1.1em;
       color: #333;
     }
-    
+
     input {
       width: 100%;
       padding: 10px;
@@ -52,12 +52,12 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    
+
     button {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 1.2em;
-      background-color: #4CAF50;
+      background-color: #4caf50;
       color: white;
       border: none;
       border-radius: 5px;
@@ -102,7 +102,7 @@
     }
 
     .dialog-box .yes-button {
-      background-color: #4CAF50;
+      background-color: #4caf50;
       color: white;
     }
 
@@ -122,17 +122,17 @@
 </head>
 <body>
   <h1>Rødt, hvitt og shot</h1>
-  
+
   <div class="prompt">
     <p id="prompt-text">Trykk på knappen for å velge en tilfeldig ledetekst og spiller.</p>
   </div>
-  
+
   <div class="player-input">
     <label for="player-names">Spillernavn (kommaseparert):</label>
-    <br>
-    <input type="text" id="player-names" placeholder="F.eks. Ola, Kari, Per">
+    <br />
+    <input type="text" id="player-names" placeholder="F.eks. Ola, Kari, Per" />
   </div>
-  
+
   <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
   <button class="tilbake-knapp" onclick="showDialog()">Tilbake til Meny</button>
 
@@ -141,100 +141,106 @@
     <button class="yes-button" onclick="goToMenu()">Ja</button>
     <button class="no-button" onclick="closeDialog()">Nei</button>
   </div>
-  
+
   <script>
     const prompts = [
-  "17. mai er barnas dag, hvem er et barn i en voksens kropp?",
-  "Hvem må ta 17 slurker?",
-  "Hvem kan dele ut 17 slurker?",
-  "Hvem slet med søvnen i natt fordi de gledet seg sånn til den store dagen? (bare pga. alkohol)",
-  "Hvem kommer til å spise mest pølse i dag? (ayooo)",
-  "Hvem må feire dagen med et shot av noe valgfritt?",
-  "Hvem er best kledd i dag?",
-  "17. mai feiringen er ikke for alle, hvem holder ikke ut til formiddag en gang?",
-  "Hvem får lov å dele ut et shot til en annen? (hvilken som helst shot)",
-  "Hold snusboksen, start kategorien: flagg som inneholder rødt, hvitt og blått",
-  "Hold snusboksen, start en frivillig kategori",
-  "Hold snusboksen, start en frivillig kategori",
-  "Hold snusboksen, start en frivillig kategori",
-  "Hold snusboksen, bestem en regel som varer ut resten av spillet",
-  "Hvem må snart kneppe opp skjorten grunnet overkonsumpsjon ved champisfrokosten?",
-  "Hvem er mest nasjonalistisk?",
-  "Hvem må si det villeste de noen gang har gjort på en 17. mai?",
-  "Hvem ser ut som de er slitne og trenger noen gode slurker? (WAKE UP)",
-  "Hold snusboksen, si første linje fra “ja vi elsker” før neste person sier neste linje osv. Den som ikke kan neste linje av sangen må drikke 17 slurker",
-  "Hvem må snakke med en annens dialekt helt til enheten deres er tom?",
-  "Hold snusboksen, den første som tar et shot kan dele ut et shot",
-  "Hold snusboksen, del ut en slurk for hvert av Norges fylker du kan nevne",
-  "Hvem er best kledd for dagen?",
-  "Hvem kommer først til å skifte fra dress/bunad til shorts og T-skjorte?",
-  "Hold snusboksen, rygg til rygg mellom deg og px. Hvis det er deg, gjør du det med personen til venstre",
-  "Hold snusboksen, rygg til rygg mellom deg og px. Hvis det er deg, gjør du det med personen til venstre",
-  "Hold snusboksen, Red flag, dealbreaker eller ok, partner er imot at du drikker på dager som 17. mai",
-  "Hvem må drikke med begge hender til enheten deres er tom, om de ikke gjør det må de chugge",
-  "Hvem må sitte på fanget til personen til venstre helt til enheten deres er tom?",
-  "Hvem er minst nasjonalistisk?",
-  "Hvem gleder seg mest til å se på barnetoget?",
-  "Hvem må drikke like mange slurker som personer i rommet?",
-  "Hvem er mest glad for at px er med i dag?",
-  "Hvem er den svetteste personen? (sjekk armhulene)",
-  "Hvem er allerede synlig beruset? (ta 5 slurker fordi.. vet ikke)",
-  "Hvem kommer til å bli freaky på nasjonaldagen?",
-  "Hvem peaket i russetiden?",
-  "Hold snusboksen, waterfall",
-  "Hvem sjekket ikke dressen før i dag tidlig?",
-  "Hvem kunne blitt statsminister?"
+      "17. mai er barnas dag, hvem er et barn i en voksens kropp?",
+      "Hvem må ta 17 slurker?",
+      "Hvem kan dele ut 17 slurker?",
+      "Hvem slet med søvnen i natt fordi de gledet seg sånn til den store dagen? (bare pga. alkohol)",
+      "Hvem kommer til å spise mest pølse i dag? (ayooo)",
+      "Hvem må feire dagen med et shot av noe valgfritt?",
+      "Hvem er best kledd i dag?",
+      "17. mai feiringen er ikke for alle, hvem holder ikke ut til formiddag en gang?",
+      "Hvem får lov å dele ut et shot til en annen? (hvilken som helst shot)",
+      "Hold snusboksen, start kategorien: flagg som inneholder rødt, hvitt og blått",
+      "Hold snusboksen, start en frivillig kategori",
+      "Hold snusboksen, start en frivillig kategori",
+      "Hold snusboksen, start en frivillig kategori",
+      "Hold snusboksen, bestem en regel som varer ut resten av spillet",
+      "Hvem må snart kneppe opp skjorten grunnet overkonsumpsjon ved champisfrokosten?",
+      "Hvem er mest nasjonalistisk?",
+      "Hvem må si det villeste de noen gang har gjort på en 17. mai?",
+      "Hvem ser ut som de er slitne og trenger noen gode slurker? (WAKE UP)",
+      "Hold snusboksen, si første linje fra “ja vi elsker” før neste person sier neste linje osv. Den som ikke kan neste linje av sangen må drikke 17 slurker",
+      "Hvem må snakke med en annens dialekt helt til enheten deres er tom?",
+      "Hold snusboksen, den første som tar et shot kan dele ut et shot",
+      "Hold snusboksen, del ut en slurk for hvert av Norges fylker du kan nevne",
+      "Hvem er best kledd for dagen?",
+      "Hvem kommer først til å skifte fra dress/bunad til shorts og T-skjorte?",
+      "Hold snusboksen, rygg til rygg mellom deg og px. Hvis det er deg, gjør du det med personen til venstre",
+      "Hold snusboksen, rygg til rygg mellom deg og px. Hvis det er deg, gjør du det med personen til venstre",
+      "Hold snusboksen, Red flag, dealbreaker eller ok, partner er imot at du drikker på dager som 17. mai",
+      "Hvem må drikke med begge hender til enheten deres er tom, om de ikke gjør det må de chugge",
+      "Hvem må sitte på fanget til personen til venstre helt til enheten deres er tom?",
+      "Hvem er minst nasjonalistisk?",
+      "Hvem gleder seg mest til å se på barnetoget?",
+      "Hvem må drikke like mange slurker som personer i rommet?",
+      "Hvem er mest glad for at px er med i dag?",
+      "Hvem er den svetteste personen? (sjekk armhulene)",
+      "Hvem er allerede synlig beruset? (ta 5 slurker fordi.. vet ikke)",
+      "Hvem kommer til å bli freaky på nasjonaldagen?",
+      "Hvem peaket i russetiden?",
+      "Hold snusboksen, waterfall",
+      "Hvem sjekket ikke dressen før i dag tidlig?",
+      "Hvem kunne blitt statsminister?"
     ];
-    
+
     function pickRandom() {
       const promptText = document.getElementById("prompt-text");
       const playerNamesInput = document.getElementById("player-names");
-      
+
       const playerNames = playerNamesInput.value.trim();
-      
+
       if (playerNames === "") {
         alert("Vennligst skriv inn minst ett spillernavn.");
         return;
       }
-      
-      const players = playerNames.split(",").map(player => player.trim()).filter(Boolean);
-      
+
+      const players = playerNames
+        .split(",")
+        .map((player) => player.trim())
+        .filter(Boolean);
+
       if (players.length === 0) {
         alert("Vennligst skriv inn minst ett spillernavn.");
         return;
       }
-      
+
       if (prompts.length === 0) {
         promptText.textContent = "Ingen flere ledetekster igjen.";
         return;
       }
-      
+
       const randomPromptIndex = Math.floor(Math.random() * prompts.length);
       const randomPlayerIndex = Math.floor(Math.random() * players.length);
-      
+
       const selectedPrompt = prompts[randomPromptIndex];
       const selectedPlayer = players[randomPlayerIndex];
-      
-      const remainingPlayers = players.filter(player => player !== selectedPlayer);
-      const randomReplacementPlayer = remainingPlayers.length > 0 ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)] : selectedPlayer;
-      
+
+      const remainingPlayers = players.filter((player) => player !== selectedPlayer);
+      const randomReplacementPlayer =
+        remainingPlayers.length > 0
+          ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)]
+          : selectedPlayer;
+
       const finalPrompt = selectedPrompt.replace(/px/g, randomReplacementPlayer);
-      
+
       prompts.splice(randomPromptIndex, 1);
-      
+
       promptText.textContent = finalPrompt;
     }
 
     function showDialog() {
-      document.getElementById('dialogBox').style.display = 'block';
+      document.getElementById("dialogBox").style.display = "block";
     }
 
     function closeDialog() {
-      document.getElementById('dialogBox').style.display = 'none';
+      document.getElementById("dialogBox").style.display = "none";
     }
 
     function goToMenu() {
-      window.location.href = 'index.html';
+      window.location.href = "index.html";
     }
   </script>
 </body>
