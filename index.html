@@ -53,6 +53,15 @@
     .snusboksen:hover {
       background-color: #1e7e34;
     }
+
+    .rhv-shot {
+      background: linear-gradient(90deg, red 0%, white 50%, blue 100%);
+      color: black;
+      font-weight: bold;
+    }
+    .rhv-shot:hover {
+      filter: brightness(1.1);
+    }
   </style>
 </head>
 <body>
@@ -61,6 +70,7 @@
   <div class="menu">
     <button class="godt-og-blandet" onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
     <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
+    <button class="rhv-shot" onclick="startGame('rhvShot')">Rødt, hvitt og shot</button>
   </div>
 
   <script>
@@ -69,6 +79,8 @@
         window.location.href = 'godtogblandet.html';
       } else if (game === 'snusboksen') {
         window.location.href = 'snusboksen.html';
+      } else if (game === 'rhvShot') {
+        window.location.href = 'rhvshot.html';
       }
     }
   </script>
