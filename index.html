@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPETAKKEL</title>
+  <title>Hovedside</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,66 +12,32 @@
       padding: 0;
       background-color: #f8f9fa;
     }
-
-    h1 {
-      margin-top: 20px;
-      font-size: 2.5em;
-      color: purple;
-    }
-
-    .fun-image {
-      margin-top: 30px;
-      width: 300px;
-      height: auto;
-    }
-
     .menu {
-      margin-top: 20px;
+      margin-top: 50px;
     }
-
     .menu button {
-      padding: 20px 40px;
+      padding: 15px 30px;
       font-size: 1.5em;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       margin: 20px;
+      background-color: #007BFF;
       transition: background-color 0.3s ease;
     }
-
-    .godt-og-blandet {
-      background-color: #007BFF;
-    }
-    .godt-og-blandet:hover {
+    .menu button:hover {
       background-color: #0056b3;
-    }
-
-    .snusboksen {
-      background-color: #28a745;
-    }
-    .snusboksen:hover {
-      background-color: #1e7e34;
-    }
-
-    .rhv-shot {
-      background: linear-gradient(90deg, red 0%, white 50%, blue 100%);
-      color: black;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px black;
-    }
-    .rhv-shot:hover {
-      filter: brightness(1.1);
     }
   </style>
 </head>
 <body>
-  <h1>Velg et spill</h1>
+  <h1>Velkommen til Spillportalen</h1>
 
   <div class="menu">
-    <button onclick="startGame('anders27')">Anders27</button>
-    <button class="godt-og-blandet" onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
-    <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
+    <button onclick="startGame('godtOgBlandet')">Godt & Blandet</button>
+    <button onclick="startGame('snusboksen')">Snusboksen</button>
+    <button onclick="startGame('anders27')">anders27</button>
   </div>
 
   <script>
@@ -80,9 +46,8 @@
         window.location.href = 'godtogblandet.html';
       } else if (game === 'snusboksen') {
         window.location.href = 'snusboksen.html';
-        else if (game === 'anders27') {
-  window.location.href = 'anders27.html';
-}
+      } else if (game === 'anders27') {
+        window.location.href = 'anders27.html';
       }
     }
   </script>
