@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>anders27</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+      color: blue;
+    }
+    .prompt {
+      margin: 20px auto;
+      max-width: 90%;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #prompt-text {
+      font-size: 1.2em;
+      color: #555;
+    }
+    .player-input {
+      margin: 20px auto;
+      max-width: 90%;
+    }
+    label {
+      font-size: 1.1em;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .tilbake-knapp {
+      background-color: #ffc107;
+      color: black;
+    }
+    .tilbake-knapp:hover {
+      background-color: #e0a800;
+    }
+    .dialog-box {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 20px;
+      border-top: 2px solid #ccc;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1000;
+    }
+    .dialog-box button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .dialog-box .yes-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .dialog-box .yes-button:hover {
+      background-color: #45a049;
+    }
+    .dialog-box .no-button {
+      background-color: #dc3545;
+      color: white;
+    }
+    .dialog-box .no-button:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <h1>anders27</h1>
+  
+  <div class="prompt">
+    <p id="prompt-text">Trykk på knappen for å starte!</p>
+  </div>
+  
+  <div class="player-input">
+    <label for="player-names">Spillernavn (kommaseparert):</label>
+    <br>
+    <input type="text" id="player-names" placeholder="Skriv inn navnene her...">
+  </div>
+  
+  <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
+  <button class="tilbake-knapp" onclick="showDialog()">Tilbake til Meny</button>
+
+  <div class="dialog-box" id="dialogBox">
+    <p>Ønsker du å gå tilbake til menyen?</p>
+    <button class="yes-button" onclick="goToMenu()">Ja</button>
+    <button class="no-button" onclick="closeDialog()">Nei</button>
+  </div>
+  
+  <script>
+    const prompts = [
+      "Velg selv, men vær kreativ da",
+      "Kategori, du bestemmer",
+      "Ta 5 slurker",
+      "Gi ut 10 slurker",
+      "Del ut 1 slurk til en person, denne personen deler så ut 2 slurker til en person osv. helt til 10 slurker er blitt gitt ut",
+      "Utfordre en i rommet til en utfordring, hvis du taper må du chugge",
+      "Syng en linje fra en sang, så sier personen til venstre neste linje. Personen som fucker opp må drikke 5 slurker",
+      "Drikk så mange slurker som du vil, del så ut tilsvarende",
+      "Alle går i rundgang og sier noe fint om personen til venstre. Skål for hver kommentar",
+      "Alle skåler",
+      "CHUG",
+      "Pekelek: beste stil",
+      "Pekelek: mest slutty",
+      "Pekelek: mest edru",
+      "Del ut så mange slurker som din body count eller chug",
+      "Ta så mange slurker som bodycounten din eller chug",
+      "Alle kan dele ut 5 slurker",
+      "Alle trekker et kort fra en kortstokk. Den som får det laveste må chugge",
+      "Rygg til rygg med px",
+      "Pekelek, hvem må ta et shot av noe valgfritt",
+      "Waterfall",
+      "Pekelek, hvem får seg noe i dag",
+      "Du og px gjør stirrekonkurranse, taper tar 8 slurker",
+      "Trekk kort fra en kortstokk helt til du trekker en ess, så mange kort som du trakk er slurker du tar",
+      "2 sannhet og 1 løgn. De som gjetter feil må drikke 8 slurker",
+      "Pekelek: hvem kunne hatt sex med seg selv",
+      "2 sannhet, 1 løgn. De som gjetter riktig kan dele ut 5 slurker",
+      "Pekelek: Hvem må chugge enheten sin?",
+      "Pekelek: Hvem har mest basic musikksmak?",
+      "Pekelek: hvem hadde sex sist?",
+      "Pekelek: Hvem har best musikksmak?",
+      "Velg deg en drikkepartner for resten av spillet"
+    ];
+
+    function pickRandom() {
+      const promptText = document.getElementById("prompt-text");
+      const playerNamesInput = document.getElementById("player-names");
+      const playerNames = playerNamesInput.value.trim();
+
+      if (playerNames === "") {
+        alert("Vennligst skriv inn minst ett spillernavn.");
+        return;
+      }
+
+      const players = playerNames
+        .split(",")
+        .map(player => player.trim())
+        .filter(player => player.length > 0);
+
+      if (players.length === 0) {
+        alert("Vennligst skriv inn minst ett gyldig spillernavn.");
+        return;
+      }
+
+      if (prompts.length === 0) {
+        promptText.textContent = "Ingen flere ledetekster igjen. Takk for at du spilte!";
+        return;
+      }
+
+      const randomPromptIndex = Math.floor(Math.random() * prompts.length);
+      const randomPlayerIndex = Math.floor(Math.random() * players.length);
+
+      const selectedPrompt = prompts[randomPromptIndex];
+      const selectedPlayer = players[randomPlayerIndex];
+
+      const remainingPlayers = players.filter(player => player !== selectedPlayer);
+      const replacementPlayer = remainingPlayers.length > 0
+        ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)]
+        : selectedPlayer;
+
+      const finalPrompt = selectedPrompt.includes("px")
+        ? selectedPrompt.replace(/px/g, replacementPlayer)
+        : selectedPrompt;
+
+      prompts.splice(randomPromptIndex, 1);
+
+      promptText.textContent = `${finalPrompt} - Spiller: ${selectedPlayer}`;
+    }
+
+    function showDialog() {
+      document.getElementById('dialogBox').style.display = 'block';
+    }
+
+    function closeDialog() {
+      document.getElementById('dialogBox').style.display = 'none';
+    }
+
+    function goToMenu() {
+      window.location.href = 'index.html'; // Koble til hovedmenyen
+    }
+  </script>
+</body>
+</html>
