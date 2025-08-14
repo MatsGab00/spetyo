@@ -34,12 +34,19 @@
       margin-bottom: 40px;
     }
 
-    /* Spillknapper */
+    /* Spillknapper i kolonne */
+    .game-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; /* Avstand mellom knappene */
+      width: 100%;
+    }
+
     .game-buttons button {
       font-size: 1.5em;
       font-weight: bold;
       padding: 20px 40px;
-      margin: 15px 0;
       border: 3px solid black;
       border-radius: 10px;
       cursor: pointer;
@@ -53,15 +60,15 @@
       transform: scale(1.05);
     }
 
-    /* Fargene som du hadde tidligere */
+    /* Farger og tekst */
     .game-snusboksen {
-      background-color: #ffc107;
+      background-color: #007bff; /* blå */
       color: black;
     }
 
     .game-godt {
-      background-color: #4CAF50;
-      color: white;
+      background-color: #4CAF50; /* grønn */
+      color: black; /* svart tekst */
     }
 
     .game-anders {
