@@ -69,6 +69,7 @@
   <h1>Velg et spill</h1>
 
   <div class="menu">
+    <button onclick="startGame('anders27')">Anders27</button>
     <button class="godt-og-blandet" onclick="startGame('godtOgBlandet')">Godt og Blandet</button>
     <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
   </div>
@@ -79,6 +80,9 @@
         window.location.href = 'godtogblandet.html';
       } else if (game === 'snusboksen') {
         window.location.href = 'snusboksen.html';
+        else if (game === 'anders27') {
+  window.location.href = 'anders27.html';
+}
       }
     }
   </script>
