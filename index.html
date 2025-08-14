@@ -1,78 +1,57 @@
-<!DOCTYPE html>
-<html lang="no">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spetakkel</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f9fa;
-    }
-    h1 {
-      margin-top: 50px;
-      font-size: 3em;
-      color: purple;
-      font-weight: bold;
-    }
-    h2 {
-      margin-top: 10px;
-      font-size: 1.8em;
-      color: black;
-    }
-    .menu {
-      margin-top: 50px;
-    }
-    .menu button {
-      padding: 20px 40px;
-      font-size: 1.5em;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .menu button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    .godtOgBlandet {
-      background-color: #4CAF50; /* grønn som tidligere */
-    }
-    .snusboksen {
-      background-color: #007BFF; /* blå som tidligere */
-    }
-    .anders27 {
-      background: linear-gradient(135deg, #FFD700, #FFC107); /* gull-gradient */
-      font-size: 2em;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <h1>Spetakkel</h1>
-  <h2>Velg et spill</h2>
+<h1 class="main-title">Spetakkel</h1>
+<h2 class="subtitle">Velg et spill</h2>
 
-  <div class="menu">
-    <button class="godtOgBlandet" onclick="startGame('godtOgBlandet')">Godt & Blandet</button>
-    <button class="snusboksen" onclick="startGame('snusboksen')">Snusboksen</button>
-    <button class="anders27" onclick="startGame('anders27')">Anders27</button>
-  </div>
+<div class="game-buttons">
+  <button class="game-snusboksen">Snusboksen</button>
+  <button class="game-godt">Godt & Blandet</button>
+  <button class="game-anders">Anders27</button>
+</div>
 
-  <script>
-    function startGame(game) {
-      if (game === 'godtOgBlandet') {
-        window.location.href = 'godtogblandet.html';
-      } else if (game === 'snusboksen') {
-        window.location.href = 'snusboksen.html';
-      } else if (game === 'anders27') {
-        window.location.href = 'anders27.html';
-      }
-    }
-  </script>
-</body>
-</html>
+<style>
+/* Tittel og undertittel */
+.main-title {
+  font-size: 4em; /* større tittel */
+  font-weight: bold;
+  color: purple;
+  -webkit-text-stroke: 2px black; /* svart outline */
+  text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; /* ekstra synlig outline */
+}
+
+.subtitle {
+  font-size: 1.8em;
+  color: black;
+  -webkit-text-stroke: 1px black;
+}
+
+/* Spillknapper */
+.game-buttons button {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 20px 40px;
+  margin: 15px;
+  border: 3px solid black; /* outline rundt knapp */
+  border-radius: 10px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* Fargene som du hadde tidligere */
+.game-snusboksen {
+  background-color: #ffc107; /* gult som før */
+  color: black;
+}
+
+.game-godt {
+  background-color: #4CAF50; /* grønn som før */
+  color: white;
+}
+
+.game-anders {
+  background-color: gold; /* gull-boks */
+  color: black;
+  font-size: 2em;
+  text-transform: capitalize; /* stor A */
+  -webkit-text-stroke: 1px black;
+  text-shadow: 2px 2px 0 #000;
+}
+</style>
