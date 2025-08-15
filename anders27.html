@@ -21,46 +21,48 @@
       text-shadow: 2px 2px 0 #000;
     }
     .prompt {
-      margin: 20px auto;
-      max-width: 90%;
+      margin: 10px auto;
       padding: 20px;
-      border: 1px solid #ccc;
+      max-width: 90%;
       border-radius: 10px;
       background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     #prompt-text {
-      font-size: 1.2em;
-      color: #555;
+      font-size: 1.5em;
+      color: #333;
+      min-height: 80px;
     }
     #prompt-image {
-      max-width: 80%;
-      margin-top: 20px;
+      max-width: 60%;
+      max-height: 200px;
+      margin: 15px auto 0 auto;
       display: none;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
+      display: block;
     }
     .player-input {
-      margin: 20px auto;
+      margin: 10px auto;
       max-width: 90%;
     }
     label {
-      font-size: 1.1em;
+      font-size: 1em;
       color: #333;
     }
     input {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 8px;
+      margin-top: 5px;
       font-size: 1em;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin-top: 15px;
+      padding: 10px 25px;
       font-size: 1.2em;
       background-color: #4CAF50;
       color: white;
@@ -75,6 +77,7 @@
     .tilbake-knapp {
       background-color: #ffc107;
       color: black;
+      margin-left: 10px;
     }
     .tilbake-knapp:hover {
       background-color: #e0a800;
@@ -86,15 +89,15 @@
       left: 0;
       width: 100%;
       background-color: white;
-      padding: 20px;
+      padding: 15px;
       border-top: 2px solid #ccc;
-      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 -4px 6px rgba(0,0,0,0.2);
       text-align: center;
       z-index: 1000;
     }
     .dialog-box button {
-      margin: 10px;
-      padding: 10px 20px;
+      margin: 5px;
+      padding: 8px 15px;
       font-size: 1em;
       border: none;
       border-radius: 5px;
@@ -118,19 +121,18 @@
 </head>
 <body>
   <h1>anders27</h1>
-  
+
   <div class="prompt">
-    <p id="prompt-text">Trykk på knappen for å starte!</p>
+    <p id="prompt-text">Trykk på "Neste" for å starte!</p>
     <img id="prompt-image" src="" alt="">
   </div>
-  
+
   <div class="player-input">
     <label for="player-names">Spillernavn (kommaseparert):</label>
-    <br>
     <input type="text" id="player-names" placeholder="Skriv inn navnene her...">
   </div>
-  
-  <button onclick="pickRandom()">Velg Tilfeldig Ledetekst og Spiller</button>
+
+  <button onclick="pickRandom()">Neste</button>
   <button class="tilbake-knapp" onclick="showDialog()">Tilbake til Meny</button>
 
   <div class="dialog-box" id="dialogBox">
@@ -138,7 +140,7 @@
     <button class="yes-button" onclick="goToMenu()">Ja</button>
     <button class="no-button" onclick="closeDialog()">Nei</button>
   </div>
-  
+
   <script>
     const prompts = [
       "Velg selv, men vær kreativ da",
@@ -189,8 +191,8 @@
 
       const players = playerNames
         .split(",")
-        .map(player => player.trim())
-        .filter(player => player.length > 0);
+        .map(p => p.trim())
+        .filter(p => p.length > 0);
 
       if (players.length === 0) {
         alert("Vennligst skriv inn minst ett gyldig spillernavn.");
@@ -209,7 +211,7 @@
       const selectedPrompt = prompts[randomPromptIndex];
       const selectedPlayer = players[randomPlayerIndex];
 
-      const remainingPlayers = players.filter(player => player !== selectedPlayer);
+      const remainingPlayers = players.filter(p => p !== selectedPlayer);
       const replacementPlayer = remainingPlayers.length > 0
         ? remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)]
         : selectedPlayer;
@@ -222,14 +224,16 @@
 
       promptText.textContent = `${finalPrompt} - Spiller: ${selectedPlayer}`;
 
-      // Fade-in bilde basert på ord
+      // Bildevalg
       if (/snusboks|snusboksen/i.test(finalPrompt)) {
         promptImage.src = "https://raw.githubusercontent.com/MatsGab00/spetyo/main/spetakkel-01.jpg";
-        promptImage.style.display = "block";
-        promptImage.style.opacity = 0;
-        setTimeout(() => { promptImage.style.opacity = 1; }, 50);
       } else if (/pekelek/i.test(finalPrompt)) {
         promptImage.src = "https://raw.githubusercontent.com/MatsGab00/spetyo/main/spetakkel-02.jpg";
+      } else {
+        promptImage.src = "";
+      }
+
+      if (promptImage.src) {
         promptImage.style.display = "block";
         promptImage.style.opacity = 0;
         setTimeout(() => { promptImage.style.opacity = 1; }, 50);
