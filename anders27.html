@@ -12,15 +12,14 @@
       padding: 0;
       background-color: #f8f9fa;
     }
-h1 {
-  margin-top: 20px;
-  font-size: 2.5em;
-  color: gold; /* Gull-farge */
-  text-transform: uppercase; /* Store bokstaver */
-  font-weight: bold;
-  text-shadow: 2px 2px 0 #000; /* Samme stil som hovedmenyen */
-}
-
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+      color: gold;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-shadow: 2px 2px 0 #000;
+    }
     .prompt {
       margin: 20px auto;
       max-width: 90%;
@@ -33,6 +32,15 @@ h1 {
     #prompt-text {
       font-size: 1.2em;
       color: #555;
+    }
+    #prompt-image {
+      max-width: 80%;
+      margin-top: 20px;
+      display: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
     }
     .player-input {
       margin: 20px auto;
@@ -113,6 +121,7 @@ h1 {
   
   <div class="prompt">
     <p id="prompt-text">Trykk på knappen for å starte!</p>
+    <img id="prompt-image" src="" alt="">
   </div>
   
   <div class="player-input">
@@ -163,11 +172,13 @@ h1 {
       "Pekelek: Hvem har mest basic musikksmak?",
       "Pekelek: hvem hadde sex sist?",
       "Pekelek: Hvem har best musikksmak?",
-      "Velg deg en drikkepartner for resten av spillet"
+      "Velg deg en drikkepartner for resten av spillet",
+      "Snusboks-utfordring"
     ];
 
     function pickRandom() {
       const promptText = document.getElementById("prompt-text");
+      const promptImage = document.getElementById("prompt-image");
       const playerNamesInput = document.getElementById("player-names");
       const playerNames = playerNamesInput.value.trim();
 
@@ -188,6 +199,7 @@ h1 {
 
       if (prompts.length === 0) {
         promptText.textContent = "Ingen flere ledetekster igjen. Takk for at du spilte!";
+        promptImage.style.display = "none";
         return;
       }
 
@@ -209,6 +221,22 @@ h1 {
       prompts.splice(randomPromptIndex, 1);
 
       promptText.textContent = `${finalPrompt} - Spiller: ${selectedPlayer}`;
+
+      // Fade-in bilde basert på ord
+      if (/snusboks|snusboksen/i.test(finalPrompt)) {
+        promptImage.src = "https://github.com/MatsGab00/spetyo/blob/main/spetakkel-01.jpg";
+        promptImage.style.display = "block";
+        promptImage.style.opacity = 0;
+        setTimeout(() => { promptImage.style.opacity = 1; }, 50);
+      } else if (/pekelek/i.test(finalPrompt)) {
+        promptImage.src = "https://github.com/MatsGab00/spetyo/blob/main/spetakkel-02.jpg";
+        promptImage.style.display = "block";
+        promptImage.style.opacity = 0;
+        setTimeout(() => { promptImage.style.opacity = 1; }, 50);
+      } else {
+        promptImage.style.opacity = 0;
+        setTimeout(() => { promptImage.style.display = "none"; }, 800);
+      }
     }
 
     function showDialog() {
@@ -220,7 +248,7 @@ h1 {
     }
 
     function goToMenu() {
-      window.location.href = 'index.html'; // Koble til hovedmenyen
+      window.location.href = 'index.html';
     }
   </script>
 </body>
