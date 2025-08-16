@@ -38,15 +38,7 @@
     border: none;
     border-radius: 8px;
   }
-  #add-player-btn {
-    background-color: #4CAF50;
-    color: white;
-  }
-  #start-game-btn {
-    background-color: #4CAF50;
-    color: white;
-  }
-  #next-btn {
+  #add-player-btn, #start-game-btn, #next-btn {
     background-color: #4CAF50;
     color: white;
   }
@@ -98,7 +90,7 @@
 </div>
 
 <script>
-const prompts = [
+const promptsOriginal = [
   "SANT ELLER USANT: px sier et utsagn om seg selv, resten stemmer om det er sant eller usant. De som gjetter rett kan dele ut 5 slurker.",
   "Kategori: Bursdagsbarnet bestemmer, px starter",
   "Kategori: Arsenal-spillere, tidligere eller nåværende, px starter",
@@ -141,7 +133,17 @@ const prompts = [
 ];
 
 let players = [];
+let prompts = [];
 let currentPromptIndex = 0;
+
+// Funksjon for å stokke array
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 // Legg til ny spiller input
 document.getElementById('add-player-btn').addEventListener('click', () => {
@@ -168,9 +170,12 @@ document.getElementById('start-game-btn').addEventListener('click', () => {
     return;
   }
 
+  // Stokk ledetekstene tilfeldig
+  prompts = shuffle([...promptsOriginal]);
+  currentPromptIndex = 0;
+
   document.getElementById('player-inputs').style.display = 'none';
   document.getElementById('game').style.display = 'block';
-  currentPromptIndex = 0;
   document.getElementById('next-btn').textContent = "Start";
   showPrompt();
 });
@@ -179,13 +184,15 @@ document.getElementById('start-game-btn').addEventListener('click', () => {
 document.getElementById('next-btn').addEventListener('click', () => {
   if(currentPromptIndex === 0) {
     document.getElementById('next-btn').textContent = "Neste";
+  } else {
+    currentPromptIndex++;
   }
-  currentPromptIndex++;
-  if(currentPromptIndex > prompts.length) {
+
+  if(currentPromptIndex >= prompts.length) {
     alert("Spillet er ferdig!");
-    currentPromptIndex = 0;
     document.getElementById('player-inputs').style.display = 'block';
     document.getElementById('game').style.display = 'none';
+    currentPromptIndex = 0;
     return;
   }
   showPrompt();
@@ -200,7 +207,7 @@ document.getElementById('back-btn').addEventListener('click', () => {
 });
 
 function showPrompt() {
-  const promptText = prompts[Math.min(currentPromptIndex-1, prompts.length-1)];
+  const promptText = prompts[currentPromptIndex];
   const promptBox = document.getElementById('prompt-text');
   const promptImage = document.getElementById('prompt-image');
 
