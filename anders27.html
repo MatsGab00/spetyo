@@ -16,7 +16,6 @@
   h1 {
     color: gold;
     font-size: 3em;
-    font-weight: bold;
     margin-bottom: 20px;
   }
   #player-inputs, #game {
@@ -26,20 +25,24 @@
   }
   input {
     margin: 5px 0;
-    padding: 14px;
+    padding: 12px;
     width: 100%;
     box-sizing: border-box;
     font-size: 1.2em;
   }
   button {
     padding: 14px 30px;
-    margin: 10px 5px 0 0;
+    margin-top: 10px;
     cursor: pointer;
     font-size: 1.2em;
     border: none;
     border-radius: 8px;
   }
   #add-player-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  #start-game-btn {
     background-color: #4CAF50;
     color: white;
   }
@@ -50,12 +53,13 @@
   #back-btn {
     background-color: #f44336;
     color: white;
+    margin-left: 10px;
   }
   #prompt-box {
     margin: 20px 0;
     text-align: center;
-    font-size: 1.2em;
-    min-height: 100px;
+    font-size: 1.3em;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,7 +78,7 @@
 <h1>Anders27</h1>
 
 <div id="player-inputs">
-  <h3>Legg inn spillernavn:</h3>
+  <h3>Legg inn spillernavn (opptil 20):</h3>
   <div id="inputs-container">
     <input type="text" placeholder="Spiller 1">
   </div>
@@ -104,7 +108,36 @@ const prompts = [
   "Pekelek: Hvem har ingen filter når blir full?",
   "Pekelek: Hvem må fortelle det flaueste de har gjort på fylla eller ta 10 slurker?",
   "Pekelek: Hvem må drikke opp halve enheten sin?",
-  "Pekelek: Hvem er mest slutty?"
+  "Pekelek: Hvem er mest slutty?",
+  "Pekelek: Hvem må sitte på fanget til en av naboene sine de neste 10 minuttene?",
+  "Pekelek: Hvem trenger å få seg et ligg i dag?",
+  "Pekelek: Hvem er her bare for å drikke og gir blanke faen i hvem som har bursdag?",
+  "Pekelek: Hvem har de snodigste hobbyene?",
+  "Pekelek: Hvem blir et dra-til-tryne på byn?",
+  "Snusboks: Hvem kunne spist en ekstra stor Danials rullekebab på færrest tygg?",
+  "Snusboks: Hvem er best til å ta vare på barn?",
+  "Snusboks: Hvem kunne ikke jobbet i barnehage?",
+  "Snusboks: Hvem har den beste sangstemmen?",
+  "Snusboks: Hvem er nærmest å bli alkoholiker?",
+  "Snusboks: Hvem må holde en 30 sekunders tale?",
+  "Snusboks: Hvem vil du utfordre til en fysisk konkurranse, du bestemmer hva?",
+  "Snusboks: Hvem er den siste personen du ville hatt over deg i misjonær?",
+  "Snusboks: Hvem må lage orgasmelyd for hver gang de drikker til enheten deres er tom?",
+  "Rygg til rygg: bursdagsbarnet og personen til venstre",
+  "Rygg til rygg: px og personen på motsatt side",
+  "Rygg til rygg: Sondre og Anders",
+  "Alle som har spilt WoW i det siste året skåler",
+  "Alle går i rundgang og forteller en fun fact om seg selv, skål for hver, bursdagsbarnet starter",
+  "px tenker på en sexposisjon. Gå i rundgang å gjett hvilken posisjon personen tenker på. De som gjetter rett kan dele ut 10 slurker.",
+  "SKÅL! px, hva skåler vi for?",
+  "Alle single tar en felles skål",
+  "px, si navnet på alle i rommet. Om du ikke klarer det, må du chugge",
+  "px, drikk slurker tilsvarende bodycounten din eller chug",
+  "px, lag en regel som varer de neste 10 minuttene. Bryt på regelen tilsvarer drikking",
+  "px og px er nå drikkepartnere, dette varer ut leken",
+  "Bursdagsbarnet deler ut et shot!",
+  "px og px gjør stirrekonkurranse, taper må chugge",
+  "px, du har 1 minutt å få bursdagsbarnet til å le/smile. Klarer du det kan du dele ut 10 slurker"
 ];
 
 let players = [];
@@ -124,32 +157,6 @@ document.getElementById('add-player-btn').addEventListener('click', () => {
 
 // Start spillet
 document.getElementById('start-game-btn').addEventListener('click', () => {
-  startGame();
-});
-
-// Neste/start-knapp
-document.getElementById('next-btn').addEventListener('click', () => {
-  if(document.getElementById('next-btn').textContent === "Start") {
-    document.getElementById('next-btn').textContent = "Neste";
-  } else {
-    currentPromptIndex++;
-    if(currentPromptIndex >= prompts.length) {
-      alert("Spillet er ferdig!");
-      currentPromptIndex = 0;
-    }
-  }
-  showPrompt();
-});
-
-// Tilbake til meny
-document.getElementById('back-btn').addEventListener('click', () => {
-  document.getElementById('game').style.display = 'none';
-  document.getElementById('player-inputs').style.display = 'block';
-  document.getElementById('next-btn').textContent = "Start";
-  currentPromptIndex = 0;
-});
-
-function startGame() {
   const inputs = document.querySelectorAll('#inputs-container input');
   players = [];
   inputs.forEach(input => {
@@ -166,10 +173,34 @@ function startGame() {
   currentPromptIndex = 0;
   document.getElementById('next-btn').textContent = "Start";
   showPrompt();
-}
+});
+
+// Neste prompt
+document.getElementById('next-btn').addEventListener('click', () => {
+  if(currentPromptIndex === 0) {
+    document.getElementById('next-btn').textContent = "Neste";
+  }
+  currentPromptIndex++;
+  if(currentPromptIndex > prompts.length) {
+    alert("Spillet er ferdig!");
+    currentPromptIndex = 0;
+    document.getElementById('player-inputs').style.display = 'block';
+    document.getElementById('game').style.display = 'none';
+    return;
+  }
+  showPrompt();
+});
+
+// Tilbake til meny
+document.getElementById('back-btn').addEventListener('click', () => {
+  document.getElementById('player-inputs').style.display = 'block';
+  document.getElementById('game').style.display = 'none';
+  currentPromptIndex = 0;
+  document.getElementById('next-btn').textContent = "Start";
+});
 
 function showPrompt() {
-  const promptText = prompts[currentPromptIndex];
+  const promptText = prompts[Math.min(currentPromptIndex-1, prompts.length-1)];
   const promptBox = document.getElementById('prompt-text');
   const promptImage = document.getElementById('prompt-image');
 
@@ -178,8 +209,17 @@ function showPrompt() {
   });
 
   promptBox.textContent = text;
-  promptImage.style.display = 'none';
-  promptImage.src = '';
+
+  // Vis bilder basert på type prompt
+  if(promptText.startsWith("Pekelek")) {
+    promptImage.src = "spetakkel-02.jpg";
+    promptImage.style.display = 'block';
+  } else if(promptText.startsWith("Snusboks")) {
+    promptImage.src = "spetakkel-01.jpg";
+    promptImage.style.display = 'block';
+  } else {
+    promptImage.style.display = 'none';
+  }
 }
 </script>
 
