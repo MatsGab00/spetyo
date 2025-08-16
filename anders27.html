@@ -182,20 +182,24 @@ document.getElementById('start-game-btn').addEventListener('click', () => {
 
 // Neste prompt
 document.getElementById('next-btn').addEventListener('click', () => {
-  if(currentPromptIndex === 0) {
-    document.getElementById('next-btn').textContent = "Neste";
-  } else {
-    currentPromptIndex++;
-  }
-
   if(currentPromptIndex >= prompts.length) {
     alert("Spillet er ferdig!");
     document.getElementById('player-inputs').style.display = 'block';
     document.getElementById('game').style.display = 'none';
     currentPromptIndex = 0;
+    document.getElementById('next-btn').textContent = "Start";
     return;
   }
+
+  // Vis prompt
   showPrompt();
+
+  // Etter første visning, endre knapp til "Neste"
+  if(currentPromptIndex === 0) {
+    document.getElementById('next-btn').textContent = "Neste";
+  }
+
+  currentPromptIndex++;
 });
 
 // Tilbake til meny
