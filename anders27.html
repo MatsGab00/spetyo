@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drikkelek</title>
+<title>anders27</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -49,14 +49,17 @@
 </head>
 <body>
 
-<h1>Drikkelek</h1>
+<h1>anders27</h1>
 
 <div id="player-inputs">
-  <h3>Legg inn spillernavn:</h3>
+  <h3>Legg inn spillernavn (opptil 20):</h3>
   <div id="inputs-container">
-    <input type="text" placeholder="Spiller 1">
-    <input type="text" placeholder="Spiller 2">
-    <input type="text" placeholder="Spiller 3">
+    <!-- 20 spiller-inputs -->
+    <script>
+      for(let i=1;i<=20;i++){
+        document.write('<input type="text" placeholder="Spiller ' + i + '">');
+      }
+    </script>
   </div>
   <button id="start-game-btn">Start</button>
 </div>
@@ -72,11 +75,11 @@
 <script>
 const prompts = [
   "SANT ELLER USANT: px sier et utsagn om seg selv, resten stemmer om det er sant eller usant. De som gjetter rett kan dele ut 5 slurker.",
-  "Kategori: Bursdagsbarnet bestemmer",
-  "Kategori: Arsenal-spillere, tidligere eller nåværende",
-  "Kategori: Typer kaker",
-  "Kategori: Land som bursdagsbarnet har vært i",
-  "Kategori: Utesteder i Bergen",
+  "Kategori: Bursdagsbarnet bestemmer, px starter",
+  "Kategori: Arsenal-spillere, tidligere eller nåværende, px starter",
+  "Kategori: Typer kaker, px starter",
+  "Kategori: Land som bursdagsbarnet har vært i, px starter",
+  "Kategori: Utesteder i Bergen, px starter",
   "Pekelek: Hvem har ingen filter når blir full?",
   "Pekelek: Hvem må fortelle det flaueste de har gjort på fylla eller ta 10 slurker?",
   "Pekelek: Hvem må drikke opp halve enheten sin?",
